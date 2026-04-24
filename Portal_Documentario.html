@@ -1,0 +1,2679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockups Portal Documentario</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0f4f8;
+    --white: #fff;
+    --navy: #0f2444;
+    --navy2: #162d52;
+    --blue: #1d60c8;
+    --blue-lt: #e8f0fb;
+    --green: #0a7c4e;
+    --green-lt: #e6f5ee;
+    --amber: #b45309;
+    --amber-lt: #fef3c7;
+    --red: #b91c1c;
+    --red-lt: #fee2e2;
+    --purple: #6d28d9;
+    --slate: #64748b;
+    --slate-lt: #f1f5f9;
+    --border: #d1dbe8;
+    --text: #1e293b;
+    --muted: #94a3b8;
+    --sans: 'Figtree', sans-serif;
+    --mono: 'Roboto Mono', monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--sans);background:#e2e8f0;color:var(--text);font-size:14px;}
+
+  /* NAV */
+  .nav-bar{position:sticky;top:0;z-index:200;background:var(--navy);padding:14px 32px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 12px rgba(0,0,0,.25);}
+  .nav-title{color:white;font-size:13px;font-weight:600;margin-right:16px;}
+  .nav-btn{font-family:var(--sans);font-size:12px;font-weight:500;padding:7px 16px;border-radius:6px;border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);background:transparent;cursor:pointer;transition:all .15s;}
+  .nav-btn:hover{border-color:rgba(255,255,255,.5);color:white;}
+  .nav-btn.active{background:var(--blue);border-color:var(--blue);color:white;}
+
+  /* FRAME */
+  .frame-wrap{padding:32px;}
+  .screen{display:none;}
+  .screen.active{display:block;}
+  .screen-label{text-align:center;margin-bottom:20px;font-family:var(--mono);font-size:11px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;}
+
+  /* DEVICE */
+  .device{max-width:460px;margin:0 auto;background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.18);}
+  .device-wide{max-width:1160px;margin:0 auto;background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.18);}
+
+  /* LOGIN */
+  .login-hero{background:var(--navy);padding:52px 32px 36px;text-align:center;}
+  .login-badge{display:inline-block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:8px 18px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:20px;font-family:var(--mono);}
+  .login-hero h2{font-size:24px;font-weight:700;color:white;margin-bottom:6px;}
+  .login-hero p{font-size:13px;color:rgba(255,255,255,.45);}
+  .form-body{padding:32px 28px;}
+  .form-group{margin-bottom:18px;}
+  .form-label{font-size:12px;font-weight:600;color:var(--navy);margin-bottom:6px;display:block;}
+  .form-input{width:100%;padding:11px 14px;border-radius:8px;border:1.5px solid var(--border);font-family:var(--sans);font-size:13px;color:var(--text);background:var(--white);}
+  .form-input.filled{border-color:#93c5fd;background:#f0f7ff;}
+  .btn{display:block;width:100%;padding:12px;border-radius:8px;font-family:var(--sans);font-size:14px;font-weight:600;border:none;cursor:pointer;text-align:center;}
+  .btn-primary{background:var(--blue);color:white;}
+
+  /* TOPBAR */
+  .topbar{background:var(--navy);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:56px;}
+  .topbar-logo{font-size:15px;font-weight:700;color:white;letter-spacing:-.01em;}
+  .topbar-logo span{color:#60a5fa;}
+  .topbar-logo em{font-style:normal;font-size:11px;color:rgba(255,255,255,.3);margin-left:8px;font-family:var(--mono);font-weight:400;letter-spacing:.08em;}
+  .topbar-right{display:flex;align-items:center;gap:14px;}
+  .topbar-user{font-size:12px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:8px;}
+  .avatar{width:30px;height:30px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;}
+  .btn-export{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;border:1.5px solid rgba(255,255,255,.25);background:transparent;color:rgba(255,255,255,.75);font-family:var(--sans);font-size:12px;font-weight:500;cursor:pointer;}
+  .btn-export:hover{border-color:rgba(255,255,255,.55);color:white;}
+
+  /* SUBBAR */
+  .subbar{background:var(--navy2);padding:0 28px;display:flex;align-items:center;gap:4px;border-bottom:1px solid rgba(255,255,255,.08);}
+  .sub-tab{padding:12px 16px;font-size:13px;font-weight:500;color:rgba(255,255,255,.45);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;}
+  .sub-tab.active{color:white;border-bottom-color:#60a5fa;}
+
+  /* MAIN */
+  .main{padding:24px 28px;background:var(--bg);min-height:600px;}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:24px;}
+  .stat{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+  .stat-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+  .stat-val{font-size:24px;font-weight:700;color:var(--navy);}
+  .stat-val.amber{color:var(--amber);}
+  .stat-val.green{color:var(--green);}
+  .stat-val.red{color:var(--red);}
+  .stat-val.purple{color:var(--purple);}
+  .stat-val.blue{color:var(--blue);}
+
+  /* TOOLBAR */
+  .toolbar{display:flex;gap:10px;margin-bottom:16px;align-items:center;flex-wrap:wrap;}
+  .search-input{flex:1;min-width:220px;max-width:300px;padding:9px 14px;border-radius:8px;border:1.5px solid var(--border);font-family:var(--sans);font-size:13px;}
+  .filter-select{padding:9px 14px;border-radius:8px;border:1.5px solid var(--border);font-family:var(--sans);font-size:13px;color:var(--slate);background:white;}
+
+  /* TABLE */
+  .tbl-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow-x:auto;overflow-y:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);}
+  .tbl-wrap .data-table{min-width:900px;}
+  .data-table{width:100%;border-collapse:collapse;font-size:12px;}
+  .data-table th{padding:10px 14px;background:var(--slate-lt);color:var(--slate);font-size:10px;text-transform:uppercase;letter-spacing:.07em;text-align:left;font-weight:700;border-bottom:1px solid var(--border);white-space:nowrap;}
+  .data-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  .data-table tr:last-child td{border-bottom:none;}
+  .data-table tr:hover td{background:#f8fafc;cursor:pointer;}
+  .data-table td.mono{font-family:var(--mono);font-size:11px;}
+  .data-table td.bold{font-weight:700;color:var(--navy);}
+
+  /* PROGRESS BAR */
+  .prog-cell{display:flex;align-items:center;gap:8px;min-width:130px;}
+  .prog-track{flex:1;height:8px;background:#e2e8f0;border-radius:99px;overflow:hidden;}
+  .prog-fill{height:100%;border-radius:99px;}
+  .prog-pct{font-size:11px;font-weight:700;min-width:34px;text-align:right;font-family:var(--mono);}
+
+  /* ACTION BTN */
+  .action-btn{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer;border:none;font-family:var(--sans);}
+  .ab-detail{background:var(--blue-lt);color:var(--blue);}
+  .ab-detail:hover{background:#d1e3fa;}
+
+  /* TABLE FOOTER */
+  .tbl-footer{padding:12px 16px;font-size:12px;color:var(--muted);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+  .tbl-footer a{color:var(--blue);text-decoration:none;}
+  .pgn-btns{display:flex;align-items:center;gap:8px;}
+  .pgn-btn{padding:5px 13px;border-radius:6px;border:1.5px solid var(--border);background:white;font-family:var(--sans);font-size:12px;cursor:pointer;color:var(--text);}
+  .pgn-btn:disabled{opacity:.4;cursor:not-allowed;}
+
+  /* MODAL */
+  .modal-overlay{position:fixed;inset:0;background:rgba(10,20,40,.6);z-index:300;display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(3px);}
+  .modal-overlay.hidden{display:none;}
+  .modal{background:var(--white);border-radius:16px;width:100%;max-width:840px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.3);}
+  .modal-hdr{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;position:sticky;top:0;background:var(--white);z-index:1;}
+  .modal-hdr h3{font-size:17px;font-weight:700;color:var(--navy);line-height:1.3;}
+  .modal-hdr-sub{font-size:11px;color:var(--muted);margin-top:3px;font-family:var(--mono);}
+  .modal-close{width:32px;height:32px;border-radius:50%;background:var(--slate-lt);border:none;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--slate);flex-shrink:0;margin-left:12px;}
+  .modal-body{padding:24px;}
+
+  /* MODAL SECTIONS */
+  .m-section{margin-bottom:24px;}
+  .m-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+  .m-grid{display:grid;gap:0;background:var(--slate-lt);border-radius:10px;overflow:hidden;border:1px solid var(--border);}
+  .m-grid-2{grid-template-columns:1fr 1fr;}
+  .m-grid-4{grid-template-columns:1fr 1fr 1fr 1fr;}
+  .m-field{padding:11px 16px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);}
+  .m-key{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;}
+  .m-val{font-size:13px;font-weight:600;color:var(--navy);}
+  .m-val.green{color:var(--green);}
+  .m-val.amber{color:var(--amber);}
+  .m-val.red{color:var(--red);}
+  .m-val.blue{color:var(--blue);}
+  .m-val.big{font-size:20px;}
+
+  /* MODAL PROGRESS BAR */
+  .prog-modal-wrap{display:flex;align-items:center;gap:16px;background:var(--slate-lt);border:1px solid var(--border);border-radius:10px;padding:14px 20px;}
+  .prog-modal-track{flex:1;height:14px;background:#e2e8f0;border-radius:99px;overflow:hidden;}
+  .prog-modal-fill{height:100%;border-radius:99px;}
+  .prog-modal-pct{font-family:var(--mono);font-size:22px;font-weight:700;min-width:56px;text-align:right;}
+
+  /* PHASE STAT CARDS — igual al estilo .stat del portal */
+  .phases-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+  .phase-stat{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 10px;text-align:center;border-top:3px solid var(--border);}
+  .phase-stat.complete{border-top-color:var(--green);background:var(--green-lt);}
+  .phase-stat.in-progress{border-top-color:var(--blue);background:var(--blue-lt);}
+  .phase-stat.locked{opacity:.45;}
+  .phase-name{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+  .phase-frac{font-size:18px;font-weight:700;color:var(--muted);line-height:1;margin-bottom:2px;}
+  .phase-stat.complete .phase-frac{color:var(--green);}
+  .phase-stat.in-progress .phase-frac{color:var(--blue);}
+  .phase-mini{height:5px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin-top:8px;}
+  .phase-mini-fill{height:100%;border-radius:99px;}
+  /* SEMÁFORO */
+  .semaforo{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0;}
+  /* ALERT BADGE */
+  .alert-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;background:var(--red-lt);color:var(--red);margin-left:6px;vertical-align:middle;}
+  /* PHASE TIMING */
+  .phase-timing{font-size:9px;color:var(--muted);margin-top:4px;font-family:var(--mono);line-height:1.3;}
+
+  /* ── FORM ASIGNACIÓN ── */
+  .form-page{max-width:1100px;margin:0 auto;}
+  .form-page-hdr{display:flex;align-items:flex-start;gap:16px;margin-bottom:28px;}
+  .form-cancel-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:8px;border:1.5px solid var(--border);background:white;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--slate);cursor:pointer;white-space:nowrap;margin-top:2px;}
+  .form-cancel-btn:hover{border-color:var(--slate);color:var(--navy);}
+  .form-page-title{font-size:20px;font-weight:700;color:var(--navy);}
+  .form-page-sub{font-size:12px;color:var(--muted);margin-top:3px;}
+  .form-card{background:white;border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px;}
+  .form-section-hdr{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+  .form-section-num{width:24px;height:24px;border-radius:50%;background:var(--navy);color:white;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .form-section-name{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--navy);}
+  .form-subsection{margin-bottom:22px;}
+  .form-subsection:last-child{margin-bottom:0;}
+  .form-sub-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--slate-lt);}
+  .form-row{display:grid;gap:16px;}
+  .form-row-2{grid-template-columns:1fr 1fr;}
+  .form-row-3{grid-template-columns:1fr 1fr 1fr;}
+  .form-row-4{grid-template-columns:1fr 1fr 1fr 1fr;}
+  .form-group-f{display:flex;flex-direction:column;gap:5px;}
+  .form-label-f{font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.05em;}
+  .form-input-f{padding:10px 13px;border-radius:8px;border:1.5px solid var(--border);font-family:var(--sans);font-size:13px;color:var(--text);background:white;width:100%;}
+  .form-input-f:focus{outline:none;border-color:var(--blue);}
+  .form-input-f.filled{border-color:#93c5fd;background:#f0f7ff;color:var(--navy);font-weight:500;}
+  .form-select-f{padding:10px 13px;border-radius:8px;border:1.5px solid var(--border);font-family:var(--sans);font-size:13px;color:var(--text);background:white;width:100%;appearance:none;}
+  .form-select-f.filled{border-color:#93c5fd;background:#f0f7ff;color:var(--navy);font-weight:500;}
+  /* PEP KEY FIELD */
+  .pep-wrap{background:var(--blue-lt);border:2px solid var(--blue);border-radius:10px;padding:14px 16px;margin-bottom:18px;}
+  .pep-badge{display:inline-flex;align-items:center;gap:5px;background:var(--blue);color:white;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:4px;margin-bottom:9px;}
+  .pep-row{display:flex;gap:10px;align-items:flex-end;}
+  .pep-input{flex:1;padding:11px 14px;border-radius:8px;border:2px solid var(--blue);font-family:var(--mono);font-size:14px;font-weight:600;color:var(--navy);background:white;letter-spacing:.04em;}
+  .pep-input:focus{outline:none;border-color:#1d4ed8;box-shadow:0 0 0 3px rgba(29,96,200,.15);}
+  .pep-btn{display:inline-flex;align-items:center;gap:7px;padding:11px 20px;border-radius:8px;background:var(--blue);border:none;color:white;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
+  .pep-btn:hover:not(:disabled){background:#1a56b0;}
+  .pep-btn:disabled{opacity:.45;cursor:not-allowed;}
+  .pep-hint{font-size:11px;color:var(--blue);margin-top:8px;line-height:1.4;}
+  /* FORM ACTIONS */
+  .form-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:8px;}
+  .btn-secondary-f{padding:11px 24px;border-radius:8px;border:1.5px solid var(--border);background:white;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--slate);cursor:pointer;}
+  .btn-save-f{padding:11px 28px;border-radius:8px;border:none;background:var(--blue);color:white;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;}
+  .btn-save-f:disabled{opacity:.4;cursor:not-allowed;}
+  /* PHASE RESPONSIBILITY CARDS */
+  .phases-resp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .phase-resp-card{background:var(--slate-lt);border:1.5px solid var(--border);border-radius:12px;padding:16px 12px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .phase-resp-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--navy);text-align:center;}
+  .phase-resp-icon{width:56px;height:56px;border-radius:50%;background:white;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .phase-resp-selects{width:100%;display:flex;flex-direction:column;gap:7px;}
+  .phase-resp-sel{width:100%;padding:7px 9px;border-radius:7px;border:1.5px solid var(--border);font-family:var(--sans);font-size:11px;color:var(--slate);background:white;appearance:none;cursor:pointer;}
+  .phase-resp-sel:focus{outline:none;border-color:var(--blue);}
+  .phase-resp-sel.filled{border-color:#93c5fd;background:#f0f7ff;color:var(--navy);font-weight:600;}
+  .phase-resp-sel:disabled{opacity:.45;cursor:not-allowed;background:var(--slate-lt);}
+  /* MODAL PHASE CARDS */
+  .modal-phase-card{cursor:pointer;border-radius:10px;border:2px solid transparent;padding:12px 8px;text-align:center;background:var(--white);border:1px solid var(--border);transition:all .15s;border-top:3px solid var(--border);}
+  .modal-phase-card.complete{border-top-color:var(--green);background:var(--green-lt);}
+  .modal-phase-card.in-progress{border-top-color:var(--blue);background:var(--blue-lt);}
+  .modal-phase-card.locked{opacity:.5;cursor:default;}
+  .modal-phase-card.selected{outline:2px solid var(--blue);outline-offset:2px;box-shadow:0 0 0 4px rgba(29,96,200,.1);}
+  .modal-phase-card:hover:not(.locked){filter:brightness(.97);}
+  /* TOGGLE SWITCH */
+  .toggle-switch{position:relative;display:inline-block;width:34px;height:19px;flex-shrink:0;}
+  .toggle-switch input{opacity:0;width:0;height:0;}
+  .toggle-slider{position:absolute;cursor:pointer;inset:0;background:#d1dbe8;border-radius:20px;transition:.2s;}
+  .toggle-slider:before{content:"";position:absolute;height:13px;width:13px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.2s;}
+  .toggle-switch input:checked + .toggle-slider{background:var(--blue);}
+  .toggle-switch input:checked + .toggle-slider:before{transform:translateX(15px);}
+  /* DISABLED PHASE CARD */
+  .phase-resp-card.disabled{opacity:.45;background:#f1f5f9 !important;border-color:var(--border) !important;}
+  /* PRIORITY TOGGLE */
+  .priority-toggle{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;cursor:pointer;border:1.5px solid var(--border);color:var(--muted);background:white;font-family:var(--sans);transition:all .15s;white-space:nowrap;}
+  .priority-toggle.active{border-color:#d97706;color:#d97706;background:#fffbeb;}
+  /* DOC DETAIL PANEL */
+  .doc-detalle-panel{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:white;}
+  .doc-detalle-hdr{padding:12px 16px;background:var(--slate-lt);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+  .doc-detalle-body{padding:16px;}
+  .doc-det-section{margin-bottom:14px;}
+  .doc-det-section:last-child{margin-bottom:0;}
+  .doc-det-section-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;display:flex;align-items:center;gap:5px;}
+  .doc-det-item{display:flex;align-items:center;padding:8px 10px;border-radius:7px;margin-bottom:4px;font-size:12px;gap:8px;}
+  .doc-det-item.aprobado{background:#e6f5ee;}
+  .doc-det-item.en-revision{background:#fff8e7;border:1px solid #fde68a;}
+  .doc-det-item.rechazado{background:#fff1f2;border:1px solid #fecaca;}
+  .doc-det-item.no-cargado{background:var(--slate-lt);border:1px solid var(--border);}
+  .doc-det-name{font-weight:500;color:var(--navy);flex:1;}
+  .doc-det-item.en-revision .doc-det-name,.doc-det-item.rechazado .doc-det-name,.doc-det-item.no-cargado .doc-det-name{color:var(--slate);}
+  .doc-det-motivo{font-size:10px;color:#b91c1c;margin-top:2px;font-style:italic;}
+  .doc-det-dates{text-align:right;font-size:10px;font-family:var(--mono);line-height:1.6;flex-shrink:0;}
+  .phase-date-row{display:grid;grid-template-columns:1fr 1fr;gap:5px;width:100%;}
+  .phase-date-lbl{font-size:9px;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+  /* DOCS ACCORDION */
+  .fase-accordion{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+  .fase-accordion:last-child{margin-bottom:0;}
+  .fase-acc-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--slate-lt);cursor:pointer;user-select:none;}
+  .fase-acc-hdr:hover{background:#e8edf3;}
+  .fase-acc-name{font-size:13px;font-weight:700;color:var(--navy);}
+  .fase-acc-count{font-size:11px;font-weight:600;background:var(--border);color:var(--slate);padding:2px 8px;border-radius:99px;}
+  .fase-acc-body{background:white;}
+  /* VISTA PROVEEDOR */
+  .prov-sim-bar{display:flex;align-items:center;gap:10px;background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:8px 14px;margin-bottom:18px;font-size:12px;color:var(--slate);}
+  .prov-sim-sel{padding:5px 9px;border-radius:6px;border:1.5px solid var(--border);font-size:12px;font-family:var(--sans);color:var(--navy);background:white;cursor:pointer;}
+  .prov-obras-wrap{background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  .prov-obras-table{width:100%;border-collapse:collapse;}
+  .prov-obras-table th{background:var(--slate-lt);padding:10px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--slate);border-bottom:1px solid var(--border);}
+  .prov-obras-table td{padding:12px 14px;font-size:13px;border-bottom:1px solid var(--slate-lt);vertical-align:middle;}
+  .prov-obras-table tbody tr:last-child td{border-bottom:none;}
+  .prov-obras-table tbody tr:hover{background:#f0f7ff;cursor:pointer;}
+  .prov-back-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;margin-bottom:16px;}
+  .prov-obra-hdr{margin-bottom:20px;}
+  .prov-obra-title{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+  .prov-obra-meta{font-size:12px;color:var(--slate);}
+  .prov-fase-section{border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden;}
+  .prov-fase-hdr{display:flex;align-items:center;gap:12px;padding:13px 16px;background:var(--slate-lt);border-bottom:1px solid var(--border);}
+  .prov-fase-hdr-name{font-size:13px;font-weight:700;color:var(--navy);}
+  .prov-fase-hdr-sub{font-size:11px;color:var(--slate);margin-left:auto;}
+  .prov-doc-row{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border-bottom:1px solid var(--slate-lt);}
+  .prov-doc-row:last-child{border-bottom:none;}
+  .prov-doc-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+  .prov-doc-info{flex:1;min-width:0;}
+  .prov-doc-name{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:4px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .prov-prio-badge{font-size:10px;font-weight:700;color:#d97706;background:#fffbeb;border:1.5px solid #fcd34d;border-radius:4px;padding:1px 6px;white-space:nowrap;}
+  .prov-doc-motivo{font-size:11px;color:#b91c1c;font-style:italic;margin-bottom:6px;}
+  .doc-upload-area{display:inline-flex;align-items:center;gap:7px;border:2px dashed var(--border);border-radius:8px;padding:7px 13px;cursor:pointer;font-size:12px;color:var(--slate);transition:.15s;background:var(--slate-lt);}
+  .doc-upload-area:hover{border-color:var(--blue);color:var(--blue);background:#f0f7ff;}
+  .doc-upload-area.uploaded{border-color:#93c5fd;background:#f0f7ff;color:var(--blue);}
+  .doc-status-tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:5px;white-space:nowrap;flex-shrink:0;}
+  .tag-pendiente{background:var(--slate-lt);color:var(--muted);}
+  .tag-revision{background:#fff8e7;color:#b45309;}
+  .tag-aprobado{background:#e6f5ee;color:#0a7c4e;}
+  .tag-rechazado{background:#fff1f2;color:#b91c1c;}
+  .prov-doc-dates{font-size:10px;font-family:var(--mono);color:var(--slate);line-height:1.7;text-align:right;flex-shrink:0;}
+  .subsanar-btn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:white;background:#b91c1c;border:none;border-radius:6px;padding:5px 11px;cursor:pointer;margin-top:4px;}
+  .doc-item{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--slate-lt);}
+  .doc-item:last-child{border-bottom:none;}
+  .doc-item.doc-req{background:#f0f7ff;}
+  .doc-check-wrap{display:flex;align-items:center;gap:10px;cursor:pointer;flex:1;}
+  .doc-check{width:16px;height:16px;accent-color:var(--blue);cursor:pointer;flex-shrink:0;}
+  .doc-name{font-size:13px;color:var(--navy);}
+  .doc-item:not(.doc-req) .doc-name{color:var(--slate);}
+  .doc-badge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:5px;white-space:nowrap;flex-shrink:0;}
+  .badge-req{background:#fef3c7;color:var(--amber);}
+  .badge-opt{background:var(--slate-lt);color:var(--muted);}
+  /* Estado de fondo en filas de documentos (Vista Proveedor y Revisor) */
+  .prov-doc-row.aprobado{background:#e6f5ee;}
+  .prov-doc-row.en-revision{background:#fff8e7;border-left:3px solid #fbbf24;}
+  .prov-doc-row.rechazado{background:#fff1f2;border-left:3px solid #fca5a5;}
+  .prov-doc-row.no-cargado{background:var(--slate-lt);}
+  /* VISTA REVISOR */
+  .rev-doc-row{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1px solid var(--border);border-radius:9px;margin-bottom:8px;background:white;}
+  .rev-doc-row:last-child{margin-bottom:0;}
+  .rev-doc-row.aprobado{background:#e6f5ee;border-color:#a7f3d0;}
+  .rev-doc-row.en-revision{background:#fff8e7;border-color:#fde68a;border-left:3px solid #f59e0b;}
+  .rev-doc-row.rechazado{background:#fff1f2;border-color:#fecaca;border-left:3px solid #ef4444;}
+  .rev-doc-row.no-cargado{background:var(--slate-lt);border-color:var(--border);}
+  .rev-doc-icon{font-size:16px;flex-shrink:0;margin-top:3px;}
+  .rev-doc-body{flex:1;min-width:0;}
+  .rev-doc-top{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .rev-doc-name{font-size:13px;font-weight:500;color:var(--navy);display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1;}
+  .rev-doc-dates{font-size:10px;font-family:var(--mono);color:var(--slate);margin-top:4px;}
+  .rev-doc-motivo-txt{font-size:11px;color:#b91c1c;font-style:italic;margin-top:4px;}
+  .rev-doc-actions{display:flex;align-items:center;gap:6px;flex-shrink:0;flex-wrap:nowrap;}
+  #modal-doc-detalle,#rev-modal-docs{min-height:280px;}
+  .btn-download{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:4px 11px;border-radius:6px;border:1.5px solid var(--border);background:white;color:var(--slate);cursor:pointer;font-family:var(--sans);}
+  .btn-download:hover{border-color:var(--blue);color:var(--blue);}
+  .btn-aprobar{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:4px 11px;border-radius:6px;border:none;background:#0a7c4e;color:white;cursor:pointer;font-family:var(--sans);}
+  .btn-rechazar{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:4px 11px;border-radius:6px;border:none;background:#b91c1c;color:white;cursor:pointer;font-family:var(--sans);}
+  .rev-motivo-form{display:none;margin-top:8px;background:white;border:1px solid #fecaca;border-radius:8px;padding:10px 12px;}
+  .rev-motivo-form.visible{display:block;}
+  .rev-motivo-textarea{width:100%;padding:8px 10px;border-radius:6px;border:1.5px solid var(--border);font-family:var(--sans);font-size:12px;color:var(--text);resize:vertical;min-height:64px;}
+  .btn-confirmar-rechazo{margin-top:6px;display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:5px 13px;border-radius:6px;border:none;background:#b91c1c;color:white;cursor:pointer;font-family:var(--sans);}
+  .rev-doc-done-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:4px 11px;border-radius:6px;}
+  .rev-done-aprobado{background:#e6f5ee;color:#0a7c4e;}
+  .rev-done-rechazado{background:#fff1f2;color:#b91c1c;}
+  /* LPU WIDGET (Vista Proveedor) */
+  .lpu-widget{background:white;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;min-width:270px;display:flex;flex-direction:column;gap:8px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  .lpu-widget-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--slate);display:flex;align-items:center;gap:6px;}
+  .lpu-filename{font-size:12px;font-weight:600;color:var(--navy);font-family:var(--mono);display:flex;align-items:center;gap:6px;}
+  .lpu-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .lpu-validation{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#0a7c4e;background:#e6f5ee;border-radius:5px;padding:3px 10px;}
+  .lpu-motivo-form{display:none;background:white;border:1px solid #fecaca;border-radius:8px;padding:10px 12px;}
+  .lpu-motivo-form.visible{display:block;}
+  /* REV MODAL LPU */
+  .rev-lpu-row{display:flex;align-items:flex-start;gap:12px;padding:14px;border:1px solid var(--border);border-radius:9px;background:white;}
+  .rev-lpu-row.en-revision{background:#fff8e7;border-color:#fde68a;border-left:3px solid #f59e0b;}
+  .rev-lpu-row.aprobado{background:#e6f5ee;border-color:#a7f3d0;}
+  .rev-lpu-row.rechazado{background:#fff1f2;border-color:#fecaca;border-left:3px solid #ef4444;}
+  /* BOTONES HISTORIAL Y CARGA REVISOR */
+  .btn-historial{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:3px 9px;border-radius:6px;border:1.5px solid #c4b5fd;background:white;color:#7c3aed;cursor:pointer;font-family:var(--sans);}
+  .btn-historial:hover{background:#ede9fe;}
+  .btn-upload-revisor{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;border:none;background:#7c3aed;color:white;cursor:pointer;font-family:var(--sans);}
+  .btn-upload-revisor:hover{background:#6d28d9;}
+  .rev-upload-form{display:none;margin-top:8px;background:#faf5ff;border:1px solid #ddd6fe;border-radius:8px;padding:10px 12px;}
+  .rev-upload-form.visible{display:block;}
+  .rev-upload-area{display:flex;align-items:center;gap:8px;padding:9px 12px;border:1.5px dashed #a78bfa;border-radius:7px;cursor:pointer;background:white;color:#7c3aed;font-size:12px;font-weight:500;}
+  .rev-upload-area:hover{background:#ede9fe;}
+  /* MODAL HISTORIAL DOCUMENTO */
+  .doc-history-timeline{display:flex;flex-direction:column;}
+  .doc-history-event{display:flex;gap:12px;padding:10px 0;position:relative;}
+  .doc-history-event:not(:last-child)::after{content:'';position:absolute;left:13px;top:34px;bottom:0;width:2px;background:var(--border);}
+  .doc-history-dot{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;z-index:1;}
+  .dot-carga{background:#e0f2fe;color:#0284c7;}
+  .dot-aprobado{background:#e6f5ee;color:#0a7c4e;}
+  .dot-rechazado{background:#fff1f2;color:#b91c1c;}
+  .dot-subsanado{background:#fef3c7;color:#b45309;}
+  .dot-revision{background:#fff8e7;color:#92400e;}
+  .dot-revisor{background:#ede9fe;color:#7c3aed;}
+  .doc-history-content{flex:1;padding-top:4px;}
+  .doc-history-titulo{font-size:12px;font-weight:600;color:var(--navy);}
+  .doc-history-meta{font-size:11px;color:var(--slate);font-family:var(--mono);margin-top:2px;}
+  .doc-history-motivo{font-size:11px;color:#b91c1c;font-style:italic;margin-top:5px;background:#fff1f2;border-radius:5px;padding:5px 8px;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-bar">
+  <div class="nav-title">Mockups · Portal Documentario</div>
+  <button class="nav-btn active" onclick="show(3)">Asignación</button>
+  <button class="nav-btn" onclick="show(2)">Obras</button>
+  <button class="nav-btn" onclick="show(4)">Vista Proveedor</button>
+  <button class="nav-btn" onclick="show(5)">Vista Revisor</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PANTALLA 2: REGISTRO DE OBRAS -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="frame-wrap screen" id="s2">
+  <div class="screen-label">Pantalla 2 · Registro de obras</div>
+  <div class="device-wide">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-logo">Portal<span>Documentario</span><em>INTERNO</em></div>
+      <div class="topbar-right">
+        <button class="btn-export">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exportar Excel
+        </button>
+        <div class="topbar-user">
+          <div class="avatar">DP</div>
+          <div>
+            <div style="color:white;font-size:12px;font-weight:600;">Dilmer Puel</div>
+            <div style="font-size:10px;font-family:var(--mono);color:rgba(255,255,255,.3);">Supervisor</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- MAIN -->
+    <div class="main">
+
+      <!-- STATS -->
+      <div class="stats">
+        <div class="stat"><div class="stat-label">Total de obras</div><div class="stat-val">87</div></div>
+        <div class="stat"><div class="stat-label">Obras en proceso</div><div class="stat-val amber">52</div></div>
+        <div class="stat"><div class="stat-label">Obras completadas</div><div class="stat-val green">27</div></div>
+        <div class="stat"><div class="stat-label">Obras con alertas</div><div class="stat-val red">8</div></div>
+        <div class="stat"><div class="stat-label">Obras vencidas</div><div class="stat-val red" id="stat-vencidas">—</div></div>
+      </div>
+
+      <!-- TOOLBAR -->
+      <div class="toolbar">
+        <input class="search-input" id="obras-search" placeholder="Buscar por PEP o nombre de obra..." oninput="renderTable()">
+        <select class="filter-select" id="obras-filter-estado" onchange="renderTable()">
+          <option value="">Todos los estados</option>
+          <option value="En Curso">En Curso</option>
+          <option value="Completado">Completado</option>
+          <option value="Con Alertas">Con Alertas</option>
+          <option value="Vencidas">Vencidas</option>
+        </select>
+        <select class="filter-select" id="obras-filter-proyecto" onchange="renderTable()">
+          <option value="">Todos los proyectos</option>
+          <option value="B2B RECURRENTE">B2B RECURRENTE</option>
+          <option value="ROLL OUT">ROLL OUT</option>
+          <option value="MIGRACIONES">MIGRACIONES</option>
+          <option value="OVERLAP">OVERLAP</option>
+          <option value="SATURACIONES">SATURACIONES</option>
+          <option value="DORSALES">DORSALES</option>
+          <option value="B2B PMO">B2B PMO</option>
+          <option value="SDP">SDP</option>
+          <option value="VERTICALES">VERTICALES</option>
+          <option value="BOC">BOC</option>
+          <option value="B2B">B2B</option>
+        </select>
+        <select class="filter-select" id="obras-filter-gerencia" onchange="renderTable()">
+          <option value="">Todos los clientes</option>
+          <option value="CORPORATIVO">CORPORATIVO</option>
+          <option value="MOVIL">MOVIL</option>
+          <option value="FIJA">FIJA</option>
+          <option value="SDP">SDP</option>
+        </select>
+        <select class="filter-select" id="obras-filter-dpto" onchange="renderTable()">
+          <option value="">Todos los departamentos</option>
+          <option value="LIMA">LIMA</option>
+          <option value="CUSCO">CUSCO</option>
+          <option value="AREQUIPA">AREQUIPA</option>
+          <option value="AMAZONAS">AMAZONAS</option>
+          <option value="PIURA">PIURA</option>
+        </select>
+        <select class="filter-select" id="obras-filter-contrata" onchange="renderTable()">
+          <option value="">Todos los proveedores</option>
+        </select>
+        <select class="filter-select" id="obras-filter-pm" onchange="renderTable()">
+          <option value="">Todos los PM</option>
+        </select>
+        <button class="btn-download" onclick="clearObrasFilters()" style="font-size:12px;padding:8px 14px;white-space:nowrap;">✕ Limpiar</button>
+      </div>
+
+      <!-- TABLE -->
+      <div class="tbl-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width:28px;"></th>
+              <th>Código PEP</th>
+              <th>Nombre de Obra</th>
+              <th>Proyecto</th>
+              <th>Cliente</th>
+              <th>Departamento</th>
+              <th>Proveedor / PM</th>
+              <th>Estado</th>
+              <th>Avance</th>
+              <th>Últ. actividad</th>
+              <th style="text-align:center;">Informe</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-body"></tbody>
+        </table>
+        <div class="tbl-footer">
+          <span>Mostrando 10 de 87 registros · <a href="#">Ver todos</a></span>
+          <div class="pgn-btns">
+            <button class="pgn-btn" disabled>← Anterior</button>
+            <span style="font-size:12px;color:var(--slate);padding:0 4px;">Pág. 1 / 9</span>
+            <button class="pgn-btn">Siguiente →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PANTALLA 3: ASIGNACIÓN DE OBRA -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="frame-wrap screen active" id="s3">
+  <div class="screen-label">Pantalla 3 · Asignación de Obra</div>
+  <div class="device-wide">
+
+    <div class="topbar">
+      <div class="topbar-logo">Portal<span>Documentario</span><em>INTERNO</em></div>
+      <div class="topbar-right">
+        <div class="topbar-user">
+          <div class="avatar">DP</div>
+          <div>
+            <div style="color:white;font-size:12px;font-weight:600;">Dilmer Puel</div>
+            <div style="font-size:10px;font-family:var(--mono);color:rgba(255,255,255,.3);">Supervisor</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="form-page">
+
+        <!-- HEADER -->
+        <div class="form-page-hdr">
+          <div>
+            <div class="form-page-title">Asignación de Obra</div>
+            <div class="form-page-sub">Complete la información del proyecto y configure sus planos iniciales</div>
+          </div>
+        </div>
+
+        <!-- SECCIÓN 1 -->
+        <div class="form-card">
+          <div class="form-section-hdr">
+            <div class="form-section-num">1</div>
+            <div class="form-section-name">Información General</div>
+          </div>
+
+          <!-- IDENTIDAD -->
+          <div class="form-subsection">
+            <div class="form-sub-label">Identidad</div>
+
+            <!-- PEP destacado -->
+            <div class="pep-wrap">
+              <div class="form-label-f" style="color:var(--blue);margin-bottom:6px;">CÓDIGO PEP</div>
+              <div class="pep-row">
+                <input class="pep-input" id="f-pep" placeholder="Ej: ONPE_939" oninput="onPepInput()" />
+                <button class="pep-btn" id="pep-btn" onclick="autoFill()" disabled>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                  Cargar datos
+                </button>
+              </div>
+              <div class="pep-hint" id="pep-hint">Ingrese el código PEP y presione <strong>Cargar datos</strong> para completar el formulario automáticamente.</div>
+            </div>
+
+            <div class="form-row form-row-2">
+              <div class="form-group-f">
+                <label class="form-label-f">Cód. Contable</label>
+                <input class="form-input-f" id="f-cod-contable" placeholder="—" readonly />
+              </div>
+              <div class="form-group-f">
+                <label class="form-label-f">Nombre de Obra</label>
+                <input class="form-input-f" id="f-nombre-obra" placeholder="—" readonly />
+              </div>
+            </div>
+          </div>
+
+          <!-- JERARQUÍA -->
+          <div class="form-subsection">
+            <div class="form-sub-label">Jerarquía</div>
+            <div class="form-row form-row-3">
+              <div class="form-group-f">
+                <label class="form-label-f">Proyecto</label>
+                <select class="form-select-f" id="f-proyecto" disabled>
+                  <option value="">—</option>
+                  <option>B2B RECURRENTE</option><option>ROLL OUT</option><option>MIGRACIONES</option>
+                  <option>OVERLAP</option><option>SATURACIONES</option><option>DORSALES</option>
+                  <option>B2B PMO</option><option>SDP</option><option>B2B</option>
+                </select>
+              </div>
+              <div class="form-group-f">
+                <label class="form-label-f">Cliente</label>
+                <input class="form-input-f" id="f-gerencia" placeholder="—" readonly />
+              </div>
+              <div class="form-group-f">
+                <label class="form-label-f">Dirección</label>
+                <input class="form-input-f" id="f-direccion" placeholder="—" readonly />
+              </div>
+            </div>
+          </div>
+
+          <!-- UBICACIÓN -->
+          <div class="form-subsection">
+            <div class="form-sub-label">Ubicación</div>
+            <div class="form-row form-row-3" style="margin-bottom:14px;">
+              <div class="form-group-f">
+                <label class="form-label-f">Departamento</label>
+                <select class="form-select-f" id="f-dpto" disabled>
+                  <option value="">—</option>
+                  <option>LIMA</option><option>CUSCO</option><option>AREQUIPA</option>
+                  <option>AMAZONAS</option><option>PIURA</option><option>HUANCAVELICA</option>
+                </select>
+              </div>
+              <div class="form-group-f">
+                <label class="form-label-f">Provincia</label>
+                <input class="form-input-f" id="f-provincia" placeholder="—" readonly />
+              </div>
+              <div class="form-group-f">
+                <label class="form-label-f">Distrito</label>
+                <input class="form-input-f" id="f-distrito" placeholder="—" readonly />
+              </div>
+            </div>
+            <div class="form-group-f">
+              <label class="form-label-f">Dirección Física</label>
+              <input class="form-input-f" id="f-dir-fisica" placeholder="—" readonly />
+            </div>
+          </div>
+
+          <!-- PLANIFICACIÓN -->
+          <div class="form-subsection">
+            <div class="form-sub-label">Planificación</div>
+            <div class="form-row form-row-3" style="margin-bottom:16px;">
+              <div class="form-group-f">
+                <label class="form-label-f">Presupuesto</label>
+                <input class="form-input-f" id="f-presupuesto" placeholder="—" readonly />
+              </div>
+              <div class="form-group-f">
+                <label class="form-label-f">Fecha Inicio</label>
+                <input class="form-input-f" id="f-fecha-inicio" placeholder="—" readonly />
+              </div>
+              <div class="form-group-f">
+                <label class="form-label-f">Fecha Fin</label>
+                <input class="form-input-f" id="f-fecha-fin" placeholder="—" readonly />
+              </div>
+            </div>
+            <div class="form-row form-row-2">
+              <div class="form-group-f">
+                <label class="form-label-f">Estado</label>
+                <select class="form-select-f" id="f-estado" disabled>
+                  <option value="">—</option>
+                  <option>Activo</option><option>Completado</option><option>Suspendido</option>
+                </select>
+              </div>
+              <div class="form-group-f">
+                <label class="form-label-f">PM a cargo</label>
+                <input class="form-input-f" id="f-pm" placeholder="—" readonly />
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /form-card -->
+
+        <!-- SECCIÓN 2 -->
+        <div class="form-card">
+          <div class="form-section-hdr">
+            <div class="form-section-num">2</div>
+            <div class="form-section-name">Fases de la Obra</div>
+          </div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">Las fases de Diseño, Permisos y Logística son siempre de LPS; seleccione el usuario responsable. Para las demás fases, asigne el proveedor y active o desactive según aplique.</div>
+          <div class="phases-resp-grid" id="phases-resp-grid">
+            <!-- generado por JS -->
+          </div>
+        </div>
+
+        <!-- SECCIÓN 3 -->
+        <div class="form-card">
+          <div class="form-section-hdr">
+            <div class="form-section-num">3</div>
+            <div class="form-section-name">Documentos Requeridos por Fase</div>
+          </div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">Documentos precargados según el tipo de proyecto. Marque cuáles son requeridos u opcionales para cada plano.</div>
+          <div id="docs-por-fase"><!-- generado por JS --></div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-secondary-f" onclick="show(2)">Cancelar</button>
+          <button class="btn-save-f" id="btn-guardar" disabled>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg>
+            Asignar obra
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PANTALLA 4: VISTA PROVEEDOR -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="frame-wrap screen" id="s4">
+  <div class="screen-label">Pantalla 4 · Vista Proveedor</div>
+  <div class="device-wide">
+
+    <div class="topbar">
+      <div class="topbar-logo">Portal<span>Documentario</span><em>PROVEEDOR</em></div>
+      <div class="topbar-right">
+        <div class="topbar-user">
+          <div class="avatar" id="prov-avatar">—</div>
+          <div>
+            <div style="color:white;font-size:12px;font-weight:600;" id="prov-display-name">—</div>
+            <div style="font-size:10px;font-family:var(--mono);color:rgba(255,255,255,.3);">Proveedor</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+
+      <!-- Barra de simulación de proveedor -->
+      <div class="prov-sim-bar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        Simulando sesión de proveedor:
+        <select class="prov-sim-sel" id="prov-rol-sel" onchange="switchProveedorVista()"></select>
+      </div>
+
+      <!-- Lista de obras -->
+      <div id="prov-lista-screen">
+        <div class="section-hdr" style="margin-bottom:14px;">
+          <div class="section-title">Mis Obras Asignadas</div>
+          <div class="section-sub" id="prov-lista-sub">—</div>
+        </div>
+        <div class="tbl-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width:28px;"></th>
+                <th>Código PEP</th>
+                <th>Nombre de Obra</th>
+                <th>Proyecto</th>
+                <th>Cliente</th>
+                <th>Departamento</th>
+                <th>PM</th>
+                <th>Avance</th>
+              </tr>
+            </thead>
+            <tbody id="prov-tabla-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Detalle de obra -->
+      <div id="prov-detalle-screen" style="display:none;">
+        <button class="prov-back-btn" onclick="backToProvList()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          Volver a mis obras
+        </button>
+        <div class="prov-obra-hdr" style="display:flex;align-items:flex-start;justify-content:space-between;gap:20px;">
+          <div>
+            <div class="prov-obra-title" id="prov-det-nombre">—</div>
+            <div class="prov-obra-meta" id="prov-det-meta">—</div>
+          </div>
+          <div id="prov-lpu-widget" style="flex-shrink:0;"></div>
+        </div>
+        <div id="prov-fases-container"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PANTALLA 5: VISTA REVISOR LPS -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="frame-wrap screen" id="s5">
+  <div class="screen-label">Pantalla 5 · Vista Revisor LPS</div>
+  <div class="device-wide">
+
+    <div class="topbar">
+      <div class="topbar-logo">Portal<span>Documentario</span><em>REVISOR LPS</em></div>
+      <div class="topbar-right">
+        <div class="topbar-user">
+          <div class="avatar">CR</div>
+          <div>
+            <div style="color:white;font-size:12px;font-weight:600;">Carlos Reyes</div>
+            <div style="font-size:10px;font-family:var(--mono);color:rgba(255,255,255,.3);">Revisor LPS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="section-hdr" style="margin-bottom:14px;">
+        <div class="section-title">Obras para Revisión</div>
+        <div class="section-sub">Seleccione una obra para revisar los documentos por fase</div>
+      </div>
+      <div class="toolbar" style="margin-bottom:12px;">
+        <input class="search-input" id="rev-search" placeholder="Buscar por PEP o nombre de obra..." oninput="renderRevTable()">
+        <select class="filter-select" id="rev-filter-estado" onchange="renderRevTable()">
+          <option value="">Todos los estados</option>
+          <option value="En Curso">En Curso</option>
+          <option value="Completado">Completado</option>
+          <option value="Con Alertas">Con Alertas</option>
+          <option value="Vencidas">Vencidas</option>
+        </select>
+        <select class="filter-select" id="rev-filter-proyecto" onchange="renderRevTable()">
+          <option value="">Todos los proyectos</option>
+          <option value="B2B RECURRENTE">B2B RECURRENTE</option>
+          <option value="ROLL OUT">ROLL OUT</option>
+          <option value="MIGRACIONES">MIGRACIONES</option>
+          <option value="OVERLAP">OVERLAP</option>
+          <option value="SATURACIONES">SATURACIONES</option>
+          <option value="DORSALES">DORSALES</option>
+          <option value="B2B PMO">B2B PMO</option>
+          <option value="SDP">SDP</option>
+          <option value="VERTICALES">VERTICALES</option>
+          <option value="BOC">BOC</option>
+          <option value="B2B">B2B</option>
+        </select>
+        <select class="filter-select" id="rev-filter-proveedor" onchange="renderRevTable()">
+          <option value="">Todos los proveedores</option>
+        </select>
+        <select class="filter-select" id="rev-filter-pm" onchange="renderRevTable()">
+          <option value="">Todos los PM</option>
+        </select>
+        <button class="btn-download" onclick="clearRevFilters()" style="font-size:12px;padding:8px 14px;">✕ Limpiar filtros</button>
+      </div>
+      <div id="rev-no-results" style="display:none;padding:24px 0;text-align:center;color:var(--slate);font-size:13px;">Sin obras que coincidan con los filtros seleccionados.</div>
+      <div class="tbl-wrap" id="rev-tbl-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width:28px;"></th>
+              <th>Código PEP</th>
+              <th>Nombre de Obra</th>
+              <th>Proyecto</th>
+              <th>Cliente</th>
+              <th>Departamento</th>
+              <th>Proveedor / PM</th>
+              <th>Estado</th>
+              <th>Avance</th>
+            </tr>
+          </thead>
+          <tbody id="rev-tabla-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- MODAL: REVISIÓN DE OBRA (REVISOR LPS) -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="modal-overlay hidden" id="rev-modal" onclick="closeRevModal(event)">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div>
+        <h3 id="rev-modal-nombre">—</h3>
+        <div class="modal-hdr-sub" id="rev-modal-meta">—</div>
+      </div>
+      <button class="modal-close" onclick="closeRevModalBtn()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="m-section">
+        <div class="m-section-title">📋 Fases de la Obra</div>
+        <div class="phases-grid" id="rev-modal-fases"></div>
+      </div>
+
+      <div class="m-section" id="rev-lpu-section" style="display:none;">
+        <div class="m-section-title">📎 Documento LPU</div>
+        <div id="rev-modal-lpu"></div>
+      </div>
+
+      <div class="m-section" style="margin-bottom:0;">
+        <div class="m-section-title">📁 Documentos para Revisión</div>
+        <div id="rev-modal-docs"><p style="color:var(--slate);font-size:13px;padding:8px 0;">Seleccione una fase para ver los documentos.</p></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- MODAL: HISTORIAL DE DOCUMENTO -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="modal-overlay hidden" id="doc-history-modal" onclick="closeDocHistoryModal(event)">
+  <div class="modal" style="max-width:500px;">
+    <div class="modal-hdr">
+      <div>
+        <h3 id="doc-history-nombre">—</h3>
+        <div class="modal-hdr-sub" id="doc-history-meta">Historial de carga y revisión</div>
+      </div>
+      <button class="modal-close" onclick="closeDocHistoryModalBtn()">✕</button>
+    </div>
+    <div class="modal-body" id="doc-history-body"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- MODAL: INFORME DE OBRA -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="modal-overlay hidden" id="modal-obra">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div>
+        <h3 id="modal-nombre">—</h3>
+        <div class="modal-hdr-sub" id="modal-meta">—</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="m-section">
+        <div class="m-section-title">🏗️ Datos de la Obra</div>
+        <div class="m-grid m-grid-4" id="modal-datos"></div>
+      </div>
+
+      <div class="m-section">
+        <div class="m-section-title">📋 Fases de la Obra</div>
+        <div class="phases-grid" id="modal-fases"></div>
+      </div>
+
+      <div class="m-section" style="margin-bottom:0;">
+        <div class="m-section-title">📁 Documentos por Fase</div>
+        <div id="modal-doc-detalle"><p style="color:var(--slate);font-size:13px;padding:8px 0;">Seleccione una fase para ver el detalle de documentos.</p></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─── LPU STATE ─── */
+let currentObraIdx = -1;
+let currentRevObraIdx = -1;
+const lpuState = {
+  'ONPE_939': { estado:'en-revision', file:'LPU_ONPE_939.pdf', fechaCarga:'2026-04-15' },
+  'AC3642':   { estado:'aprobado', file:'LPU_AC3642.pdf', fechaCarga:'2026-03-20' }
+};
+function isLPUProject(obra) {
+  return obra.proyecto === 'VERTICALES' || obra.proyecto === 'BOC';
+}
+
+/* ─── DATA ─── */
+const obras = [
+  { pep:'INFT_001', nombre:'INFRAESTRUCTURA TOTAL - SEDE CENTRAL', proyecto:'VERTICALES', gerencia:'CORPORATIVO', dpto:'LIMA',
+    contrata:'Tecnocom S.A.', resp:'Pedro Vargas', pm:'Dilmer Puel', alertas:0, estado:'En Curso',
+    fechaInicio:'2026-03-01', fechaCierre:'2026-11-30', ultimaActividad:null,
+    fases:[
+      {n:'PINT', a:0,t:4, rev:0, rej:0, act:null, prov:'Tecnocom S.A.',   resp:'Patricia Lima'},
+      {n:'PEXT', a:0,t:5, rev:0, rej:0, act:null, prov:'Buildnet E.I.R.L.', resp:'Javier Paz'}
+    ]},
+  { pep:'ONPE_939', nombre:'(ONPE) GENERAL JOSE MARIA EGUZQUIZA', proyecto:'VERTICALES', gerencia:'CORPORATIVO', dpto:'LIMA',
+    contrata:'Tecnocom S.A.', resp:'Pedro Vargas', pm:'Pedro Marroquin', alertas:2, estado:'En Curso',
+    fechaInicio:'2025-10-01', fechaCierre:'2026-06-30', ultimaActividad:'2026-04-18',
+    fases:[
+      {n:'Diseño',    a:5,t:5, rev:0, rej:0, act:'2026-02-15', prov:'LPS',                  resp:'Carlos Reyes'},
+      {n:'Permisos',  a:3,t:3, rev:0, rej:0, act:'2026-03-10', prov:'LPS',                  resp:'Carlos Reyes'},
+      {n:'Logística', a:2,t:2, rev:0, rej:0, act:'2026-03-28', prov:'LPS',                  resp:'Sandra Vega'},
+      {n:'Obra Civil',a:2,t:6, rev:1, rej:1, act:'2026-04-18', prov:'Tecnocom S.A.',        resp:'Patricia Lima', lpsUploaded:1},
+      {n:'PINT',      a:0,t:2, rev:0, rej:0, act:null,          prov:'LPS',                  resp:'Sandra Vega'},
+      {n:'PEXT',      a:0,t:2, rev:0, rej:0, act:null,          prov:'Tecnocom S.A.',        resp:'Miguel Soto'}
+    ]},
+  { pep:'200MILLAS', nombre:'200 MILLAS', proyecto:'SDP', gerencia:'SDP', dpto:'LIMA',
+    contrata:'Instalaciones Rápidas SAC', resp:'Ana Torres', pm:'Dilmer Puel', alertas:1, estado:'En Curso',
+    fechaInicio:'2025-09-01', fechaCierre:'2026-03-31', ultimaActividad:'2026-03-20',
+    fases:[
+      {n:'Diseño',    a:5,t:5, rev:0,      act:'2026-01-10', prov:'LPS',                    resp:'Sandra Vega'},
+      {n:'Permisos',  a:1,t:3, rev:1,rej:1, act:'2026-03-20', prov:'Instalaciones Rápidas SAC', resp:'Ana Torres'},
+      {n:'Logística', a:0,t:2, rev:0,      act:null,          prov:'Instalaciones Rápidas SAC', resp:'Ana Torres'},
+      {n:'Obra Civil',a:0,t:6, rev:0,      act:null,          prov:'Instalaciones Rápidas SAC', resp:'Ana Torres'},
+      {n:'PINT',      a:0,t:2, rev:0,      act:null,          prov:'Instalaciones Rápidas SAC', resp:'Ana Torres'},
+      {n:'PEXT',      a:0,t:2, rev:0,      act:null,          prov:'Instalaciones Rápidas SAC', resp:'Ana Torres'}
+    ]},
+  { pep:'LI0640', nombre:'29_DE_AGOSTO', proyecto:'MIGRACIONES', gerencia:'MOVIL', dpto:'LIMA',
+    contrata:'Constructora Vía Libre', resp:'Luis Mendoza', pm:'Ever Chavez', alertas:0, estado:'Completado',
+    fechaInicio:'2025-08-01', fechaCierre:'2026-02-28', ultimaActividad:'2026-02-20',
+    fases:[
+      {n:'Diseño',    a:5,t:5, rev:0, act:'2025-10-15', prov:'LPS',                  resp:'Sandra Vega'},
+      {n:'Permisos',  a:3,t:3, rev:0, act:'2025-11-30', prov:'Constructora Vía Libre', resp:'Luis Mendoza'},
+      {n:'Logística', a:2,t:2, rev:0, act:'2025-12-20', prov:'Constructora Vía Libre', resp:'Luis Mendoza'},
+      {n:'Obra Civil',a:6,t:6, rev:0, act:'2026-01-28', prov:'Constructora Vía Libre', resp:'Luis Mendoza'},
+      {n:'PINT',      a:2,t:2, rev:0, act:'2026-02-15', prov:'LPS',                  resp:'Carlos Reyes'},
+      {n:'PEXT',      a:2,t:2, rev:0, act:'2026-02-20', prov:'Constructora Vía Libre', resp:'Luis Mendoza'}
+    ]},
+  { pep:'85274285', nombre:'85274285_HUANCAVELICA', proyecto:'B2B', gerencia:'CORPORATIVO', dpto:'LIMA',
+    contrata:'Redes del Centro SRL', resp:'Mario Condori', pm:'Pedro Marroquin', alertas:2, estado:'En Curso',
+    fechaInicio:'2025-11-01', fechaCierre:'2026-04-15', ultimaActividad:'2026-03-05',
+    fases:[
+      {n:'Diseño',    a:5,t:5, rev:0, act:'2026-01-20', prov:'Redes del Centro SRL', resp:'Hugo Mamani'},
+      {n:'Permisos',  a:0,t:3, rev:0, act:null,          prov:'LPS',                  resp:'Carlos Reyes'},
+      {n:'Logística', a:0,t:2, rev:0, act:null,          prov:'Redes del Centro SRL', resp:'Ana Condori'},
+      {n:'Obra Civil',a:0,t:6, rev:0, act:null,          prov:'Redes del Centro SRL', resp:'Hugo Mamani'},
+      {n:'PINT',      a:0,t:2, rev:0, act:null,          prov:'Redes del Centro SRL', resp:'Ana Condori'},
+      {n:'PEXT',      a:0,t:2, rev:0, act:null,          prov:'Redes del Centro SRL', resp:'Hugo Mamani'}
+    ]},
+  { pep:'85397920', nombre:'85397920', proyecto:'B2B PMO', gerencia:'CORPORATIVO', dpto:'LIMA',
+    contrata:'Buildnet E.I.R.L.', resp:'Carlos Paz', pm:'Dilmer Puel', alertas:1, estado:'En Curso',
+    fechaInicio:'2025-12-01', fechaCierre:'2026-05-31', ultimaActividad:'2026-04-10',
+    fases:[
+      {n:'Diseño',    a:3,t:5, rev:1,rej:1, act:'2026-04-10', prov:'Buildnet E.I.R.L.', resp:'Javier Paz'},
+      {n:'Permisos',  a:0,t:3, rev:0,      act:null,          prov:'Buildnet E.I.R.L.', resp:'Javier Paz'},
+      {n:'Logística', a:0,t:2, rev:0,      act:null,          prov:'LPS',               resp:'Sandra Vega'},
+      {n:'Obra Civil',a:0,t:6, rev:0,      act:null,          prov:'LPS',               resp:'Carlos Reyes'},
+      {n:'PINT',      a:0,t:2, rev:0,      act:null,          prov:'LPS',               resp:'Sandra Vega'},
+      {n:'PEXT',      a:0,t:2, rev:0,      act:null,          prov:'LPS',               resp:'Carlos Reyes'}
+    ]},
+  { pep:'AC1469', nombre:'AC1469-CA_NUEVO_TRIUNFO', proyecto:'ROLL OUT', gerencia:'MOVIL', dpto:'CUSCO',
+    contrata:'Constructora Andina S.A.', resp:'Rosa Quispe', pm:'Ever Chavez', alertas:3, estado:'En Curso',
+    fechaInicio:'2025-10-15', fechaCierre:'2026-07-15', ultimaActividad:'2026-04-19',
+    fases:[
+      {n:'Diseño',    a:5,t:5, rev:0,      act:'2026-01-30', prov:'LPS',                       resp:'Sandra Vega'},
+      {n:'Permisos',  a:3,t:3, rev:0,      act:'2026-03-15', prov:'Constructora Andina S.A.',  resp:'Roberto Quispe'},
+      {n:'Logística', a:1,t:2, rev:0,rej:1, act:'2026-04-19', prov:'Constructora Andina S.A.',  resp:'Lucía Flores'},
+      {n:'Obra Civil',a:0,t:6, rev:0,      act:null,          prov:'Constructora Andina S.A.',  resp:'Roberto Quispe'},
+      {n:'PINT',      a:0,t:2, rev:0,      act:null,          prov:'Constructora Andina S.A.',  resp:'Lucía Flores'},
+      {n:'PEXT',      a:0,t:2, rev:0,      act:null,          prov:'Constructora Andina S.A.',  resp:'Roberto Quispe'}
+    ]},
+  { pep:'AC3642', nombre:'AC3642-CA_PIURAY', proyecto:'BOC', gerencia:'MOVIL', dpto:'CUSCO',
+    contrata:'Servicios del Sur SAC', resp:'Juan Mamani', pm:'Pedro Marroquin', alertas:0, estado:'Iniciado',
+    fechaInicio:'2026-01-15', fechaCierre:'2026-08-30', ultimaActividad:'2026-03-28',
+    fases:[
+      {n:'Diseño',    a:2,t:5, rev:0,rej:1, act:'2026-03-28', prov:'LPS',                   resp:'Carlos Reyes'},
+      {n:'Permisos',  a:0,t:3, rev:0,      act:null,          prov:'LPS',                   resp:'Carlos Reyes'},
+      {n:'Logística', a:0,t:2, rev:0,      act:null,          prov:'LPS',                   resp:'Sandra Vega'},
+      {n:'Obra Civil',a:0,t:6, rev:0,      act:null,          prov:'Servicios del Sur SAC', resp:'Juan Mamani'},
+      {n:'PINT',      a:0,t:2, rev:0,      act:null,          prov:'Servicios del Sur SAC', resp:'Juan Mamani'},
+      {n:'PEXT',      a:0,t:2, rev:0,      act:null,          prov:'Servicios del Sur SAC', resp:'Juan Mamani'}
+    ]},
+  { pep:'AC4453', nombre:'AC4453 KITENI - AC 4461 QUELLOUNO', proyecto:'DORSALES', gerencia:'FIJA', dpto:'CUSCO',
+    contrata:'Infraestructura Total S.A.', resp:'Elena Farfán', pm:'Dilmer Puel', alertas:0, estado:'Iniciado',
+    fechaInicio:'2026-02-01', fechaCierre:'2026-09-30', ultimaActividad:'2026-02-01',
+    fases:[
+      {n:'Diseño',    a:0,t:5, rev:0, act:null, prov:'LPS',                       resp:'Sandra Vega'},
+      {n:'Permisos',  a:0,t:3, rev:0, act:null, prov:'Infraestructura Total S.A.', resp:'Elena Farfán'},
+      {n:'Logística', a:0,t:2, rev:0, act:null, prov:'Infraestructura Total S.A.', resp:'Elena Farfán'},
+      {n:'Obra Civil',a:0,t:6, rev:0, act:null, prov:'Infraestructura Total S.A.', resp:'Elena Farfán'},
+      {n:'PINT',      a:0,t:2, rev:0, act:null, prov:'Infraestructura Total S.A.', resp:'Elena Farfán'},
+      {n:'PEXT',      a:0,t:2, rev:0, act:null, prov:'Infraestructura Total S.A.', resp:'Elena Farfán'}
+    ]},
+  { pep:'LI0720', nombre:'ALAMEDA_LOS_PINOS', proyecto:'MIGRACIONES', gerencia:'MOVIL', dpto:'LIMA',
+    contrata:'Constructora Vía Libre', resp:'Luis Mendoza', pm:'Ever Chavez', alertas:1, estado:'En Curso',
+    fechaInicio:'2025-09-01', fechaCierre:'2026-03-15', ultimaActividad:'2026-03-10',
+    fases:[
+      {n:'Diseño',    a:5,t:5, rev:0,      act:'2025-12-05', prov:'LPS',                  resp:'Carlos Reyes'},
+      {n:'Permisos',  a:1,t:3, rev:0,rej:2, act:'2026-03-10', prov:'Constructora Vía Libre', resp:'Luis Mendoza'},
+      {n:'Logística', a:0,t:2, rev:0,      act:null,          prov:'Constructora Vía Libre', resp:'Luis Mendoza'},
+      {n:'Obra Civil',a:0,t:6, rev:0,      act:null,          prov:'Constructora Vía Libre', resp:'Luis Mendoza'},
+      {n:'PINT',      a:0,t:2, rev:0,      act:null,          prov:'Constructora Vía Libre', resp:'Luis Mendoza'},
+      {n:'PEXT',      a:0,t:2, rev:0,      act:null,          prov:'Constructora Vía Libre', resp:'Luis Mendoza'}
+    ]},
+  { pep:'AM_TR05_EL_PERAL', nombre:'AM_TR05_EL_PERAL', proyecto:'OVERLAP', gerencia:'FIJA', dpto:'AREQUIPA',
+    contrata:'Servicios Integrados SRL', resp:'Carlos Reyes', pm:'Pedro Marroquin', alertas:1, estado:'En Curso',
+    fechaInicio:'2026-01-01', fechaCierre:'2026-07-01', ultimaActividad:'2026-04-05',
+    fases:[
+      {n:'Diseño',    a:4,t:5, rev:1, act:'2026-04-05', prov:'Servicios Integrados SRL', resp:'Carlos Reyes'},
+      {n:'Permisos',  a:0,t:3, rev:0, act:null,          prov:'LPS',                     resp:'Sandra Vega'},
+      {n:'Logística', a:0,t:2, rev:0, act:null,          prov:'Servicios Integrados SRL', resp:'Carlos Reyes'},
+      {n:'Obra Civil',a:0,t:6, rev:0, act:null,          prov:'Servicios Integrados SRL', resp:'Carlos Reyes'},
+      {n:'PINT',      a:0,t:2, rev:0, act:null,          prov:'Servicios Integrados SRL', resp:'Carlos Reyes'},
+      {n:'PEXT',      a:0,t:2, rev:0, act:null,          prov:'Servicios Integrados SRL', resp:'Carlos Reyes'}
+    ]}
+];
+
+const TODAY = new Date('2026-04-21');
+
+function barColor(p) {
+  if (p >= 100) return '#0a7c4e';
+  if (p >= 70)  return '#16a34a';
+  if (p >= 50)  return '#ca8a04';
+  if (p >= 25)  return '#b45309';
+  return '#b91c1c';
+}
+
+function calcHealth(pct) {
+  if (pct >= 70) return 'verde';
+  if (pct >= 40) return 'amarillo';
+  return 'rojo';
+}
+
+function healthDot(pct) {
+  const h = calcHealth(pct);
+  const colores = { verde:'#16a34a', amarillo:'#ca8a04', rojo:'#b91c1c' };
+  const labels  = { verde:'Buen avance', amarillo:'Avance moderado', rojo:'Bajo avance' };
+  return `<span class="semaforo" style="background:${colores[h]};" title="${labels[h]}"></span>`;
+}
+
+function fmtDate(iso) {
+  if (!iso) return '—';
+  const [y,m,d] = iso.split('-');
+  const meses = ['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  return `${parseInt(d)} ${meses[parseInt(m)]} ${y}`;
+}
+
+function isVencida(o) {
+  const aprobados = o.fases.reduce((s,f) => s+f.a, 0);
+  const total     = o.fases.reduce((s,f) => s+f.t, 0);
+  return new Date(o.fechaCierre) < TODAY && aprobados < total;
+}
+
+function matchEstadoFilter(o, estadoVal) {
+  if (!estadoVal)               return true;
+  if (estadoVal === 'Con Alertas') return o.alertas > 0;
+  if (estadoVal === 'Vencidas')    return isVencida(o);
+  return o.estado === estadoVal;
+}
+
+function renderStats() {
+  const vencidas = obras.filter(isVencida).length;
+  document.getElementById('stat-vencidas').textContent = vencidas;
+}
+
+function renderTable() {
+  const search   = ((document.getElementById('obras-search')          || {}).value || '').trim().toLowerCase();
+  const estado   = ((document.getElementById('obras-filter-estado')   || {}).value || '');
+  const proyecto = ((document.getElementById('obras-filter-proyecto') || {}).value || '');
+  const gerencia = ((document.getElementById('obras-filter-gerencia') || {}).value || '');
+  const dpto     = ((document.getElementById('obras-filter-dpto')     || {}).value || '');
+  const contrata = ((document.getElementById('obras-filter-contrata') || {}).value || '');
+  const pm       = ((document.getElementById('obras-filter-pm')       || {}).value || '');
+
+  const filtered = obras
+    .map((o, i) => ({ o, i }))
+    .filter(({ o }) => {
+      if (search   && !o.pep.toLowerCase().includes(search) && !o.nombre.toLowerCase().includes(search)) return false;
+      if (!matchEstadoFilter(o, estado))       return false;
+      if (proyecto && o.proyecto !== proyecto) return false;
+      if (gerencia && o.gerencia !== gerencia) return false;
+      if (dpto     && o.dpto     !== dpto)     return false;
+      if (contrata && o.contrata !== contrata) return false;
+      if (pm       && o.pm       !== pm)       return false;
+      return true;
+    });
+
+  if (filtered.length === 0) {
+    document.getElementById('tbl-body').innerHTML =
+      `<tr><td colspan="10" style="text-align:center;padding:24px;color:var(--slate);font-size:13px;">Sin obras que coincidan con los filtros seleccionados.</td></tr>`;
+    return;
+  }
+
+  document.getElementById('tbl-body').innerHTML = filtered.map(({ o, i }) => {
+    const totalDocs = o.fases.reduce((s,f) => s+f.t, 0);
+    const aprobados = o.fases.reduce((s,f) => s+f.a, 0);
+    const p = totalDocs > 0 ? Math.round(aprobados / totalDocs * 100) : 0;
+    const alertBadge = o.alertas > 0
+      ? `<span class="alert-badge">&#9888; ${o.alertas}</span>` : '';
+    const estadoBadge = o.estado === 'Completado'
+      ? `<span style="font-size:10px;font-weight:700;color:#0a7c4e;background:#e6f5ee;padding:2px 7px;border-radius:4px;">✓ Completado</span>`
+      : `<span style="font-size:10px;font-weight:700;color:#b45309;background:#fef3c7;padding:2px 7px;border-radius:4px;">● En Curso</span>`;
+    return `
+    <tr onclick="openObra(${i})">
+      <td style="text-align:center;padding:0 8px;">${healthDot(p)}</td>
+      <td class="mono bold">${o.pep}</td>
+      <td style="font-weight:600;color:var(--navy);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${o.nombre}">${o.nombre}${alertBadge}</td>
+      <td style="font-size:12px;color:var(--slate);">${o.proyecto}</td>
+      <td style="font-size:12px;color:var(--slate);">${o.gerencia}</td>
+      <td style="font-size:12px;color:var(--slate);">${o.dpto}</td>
+      <td style="font-size:12px;color:var(--slate);">${o.contrata || o.pm}</td>
+      <td>${estadoBadge}</td>
+      <td>
+        <div class="prog-cell">
+          <div class="prog-track"><div class="prog-fill" style="width:${p}%;background:${barColor(p)};"></div></div>
+          <span class="prog-pct" style="color:${barColor(p)};">${p}%</span>
+        </div>
+      </td>
+      <td style="font-size:11px;color:var(--slate);font-family:var(--mono);white-space:nowrap;">${fmtDate(o.ultimaActividad)}</td>
+      <td style="text-align:center;">
+        <button class="action-btn ab-detail" onclick="event.stopPropagation();openObra(${i});">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Informe
+        </button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function initObrasFilters() {
+  const elContrata = document.getElementById('obras-filter-contrata');
+  if (!elContrata) return;
+  const contratas = [...new Set(obras.map(o => o.contrata).filter(Boolean))].sort();
+  contratas.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c;
+    opt.textContent = c;
+    elContrata.appendChild(opt);
+  });
+
+  const elPm = document.getElementById('obras-filter-pm');
+  if (!elPm) return;
+  const pms = [...new Set(obras.map(o => o.pm).filter(Boolean))].sort();
+  pms.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p;
+    opt.textContent = p;
+    elPm.appendChild(opt);
+  });
+}
+
+function clearObrasFilters() {
+  ['obras-search','obras-filter-estado','obras-filter-proyecto','obras-filter-gerencia','obras-filter-dpto','obras-filter-contrata','obras-filter-pm']
+    .forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+  renderTable();
+}
+
+function openObra(idx) {
+  const o = obras[idx];
+  document.getElementById('modal-nombre').textContent = o.nombre;
+  document.getElementById('modal-meta').textContent = o.pep + '  ·  ' + o.proyecto + '  ·  ' + o.dpto;
+
+  const catKey = Object.keys(catalogoPEP).find(k => k.toUpperCase() === o.pep.toUpperCase());
+  const cat = catKey ? catalogoPEP[catKey] : {};
+
+
+
+  const ecClass = o.estado === 'Completado' ? 'green' : o.estado === 'Iniciado' ? 'blue' : '';
+
+  document.getElementById('modal-datos').innerHTML = `
+    <div class="m-field" style="border-right:1px solid var(--border);">
+      <div class="m-key">Código PEP</div><div class="m-val" style="font-size:12px;font-family:var(--mono);">${o.pep}</div>
+    </div>
+    <div class="m-field" style="border-right:1px solid var(--border);">
+      <div class="m-key">PM a cargo</div><div class="m-val">${o.pm || '—'}</div>
+    </div>
+    <div class="m-field" style="border-right:1px solid var(--border);">
+      <div class="m-key">Cód. Contable</div><div class="m-val" style="font-size:11px;font-family:var(--mono);">${cat.codContable || '—'}</div>
+    </div>
+    <div class="m-field" style="border-right:none;">
+      <div class="m-key">Proyecto</div><div class="m-val">${o.proyecto}</div>
+    </div>
+    <div class="m-field" style="border-right:1px solid var(--border);">
+      <div class="m-key">Cliente</div><div class="m-val">${o.gerencia}</div>
+    </div>
+    <div class="m-field" style="border-right:1px solid var(--border);">
+      <div class="m-key">Dirección</div><div class="m-val">${cat.direccion || '—'}</div>
+    </div>
+    <div class="m-field" style="border-right:1px solid var(--border);">
+      <div class="m-key">Departamento</div><div class="m-val">${o.dpto}</div>
+    </div>
+    <div class="m-field" style="border-right:none;">
+      <div class="m-key">Provincia</div><div class="m-val">${cat.provincia || '—'}</div>
+    </div>
+    <div class="m-field" style="border-right:1px solid var(--border);">
+      <div class="m-key">Distrito</div><div class="m-val">${cat.distrito || '—'}</div>
+    </div>
+    <div class="m-field" style="border-right:1px solid var(--border);">
+      <div class="m-key">Dirección Física</div><div class="m-val" style="font-size:11px;">${cat.dirFisica || '—'}</div>
+    </div>
+    <div class="m-field" style="border-right:1px solid var(--border);">
+      <div class="m-key">Presupuesto</div><div class="m-val">${cat.presupuesto ? parseInt(cat.presupuesto).toLocaleString() : '—'}</div>
+    </div>
+    <div class="m-field" style="border-right:none;">
+      <div class="m-key">Estado</div><div class="m-val ${ecClass}">${o.estado}</div>
+    </div>
+    <div class="m-field" style="grid-column:span 2;border-bottom:none;border-right:1px solid var(--border);">
+      <div class="m-key">Fecha Inicio</div><div class="m-val">${fmtDate(o.fechaInicio)}</div>
+    </div>
+    <div class="m-field" style="grid-column:span 2;border-bottom:none;border-right:none;">
+      <div class="m-key">Fecha Fin</div><div class="m-val">${fmtDate(o.fechaCierre)}</div>
+    </div>
+  `;
+
+  const currentFaseIdx = o.fases.findIndex(f => f.a < f.t);
+  const activeFi = currentFaseIdx >= 0 ? currentFaseIdx : o.fases.length - 1;
+
+  const C_GREEN = '#0a7c4e';
+  const C_BLUE  = '#1d60c8';
+  const C_GRAY  = '#94a3b8';
+
+  document.getElementById('modal-fases').innerHTML = o.fases.map((f, fi) => {
+    const fc = getFaseConfig(f.n);
+
+    const pct = f.t > 0 ? Math.round(f.a / f.t * 100) : 0;
+    const isComplete = f.a === f.t && f.t > 0;
+    const isCurrent  = fi === activeFi;
+    const isLocked   = currentFaseIdx >= 0 && fi > currentFaseIdx;
+    const fColor = isComplete ? C_GREEN : isCurrent ? C_BLUE : C_GRAY;
+
+    let statusBadge = '';
+    if (isComplete)     statusBadge = `<span style="font-size:10px;color:${C_GREEN};font-weight:700;">✓ Completa</span>`;
+    else if (isCurrent) statusBadge = `<span style="font-size:10px;color:${C_BLUE};font-weight:700;">● Actual</span>`;
+    else if (isLocked)  statusBadge = `<span style="font-size:10px;color:${C_GRAY};">🔒</span>`;
+    else                statusBadge = `<span style="font-size:10px;color:${C_GRAY};">—</span>`;
+
+    const clickAttr = `onclick="selectFaseModal(${idx},${fi})"`;
+    const cardStyle = `border-top-color:${fColor};cursor:pointer;${isLocked ? 'opacity:.55;' : ''}`;
+
+    return `
+      <div class="phase-stat" id="modal-fase-card-${fi}" style="${cardStyle}" ${clickAttr}>
+        <div style="display:flex;justify-content:center;margin-bottom:6px;">
+          <div style="width:28px;height:28px;border-radius:50%;background:${fColor}18;display:flex;align-items:center;justify-content:center;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${fColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${fc.svg}</svg>
+          </div>
+        </div>
+        <div class="phase-name">${f.n}</div>
+        <div class="phase-frac" style="color:${fColor};">${f.a}/${f.t}</div>
+        <div class="phase-mini">
+          <div class="phase-mini-fill" style="width:${pct}%;background:${fColor};"></div>
+        </div>
+        <div style="font-size:10px;font-weight:700;font-family:var(--mono);color:${fColor};margin-top:4px;">${pct}%</div>
+        ${statusBadge}
+      </div>`;
+  }).join('');
+
+  selectFaseModal(idx, activeFi);
+
+  document.getElementById('modal-obra').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function selectFaseModal(obraIdx, fi) {
+  const o    = obras[obraIdx];
+  const f    = o.fases[fi];
+  const fc   = getFaseConfig(f.n);
+  const allDocs = docsConfig[f.n] || [];
+  const docs    = allDocs.slice(0, f.t);
+
+  const isComplete = f.a === f.t && f.t > 0;
+  const currentFaseIdx = o.fases.findIndex(fz => fz.a < fz.t);
+  const activeFi = currentFaseIdx >= 0 ? currentFaseIdx : o.fases.length - 1;
+  const hColor = isComplete ? '#0a7c4e' : fi === activeFi ? '#1d60c8' : '#94a3b8';
+
+  document.querySelectorAll('[id^="modal-fase-card-"]').forEach(c => {
+    c.style.outline = '';
+    c.style.boxShadow = '';
+  });
+  const selCard = document.getElementById('modal-fase-card-' + fi);
+  if (selCard) {
+    selCard.style.outline = `2px solid ${hColor}`;
+    selCard.style.boxShadow = `0 0 0 4px ${hColor}22`;
+  }
+
+  function mockDate(base, offsetDays) {
+    const d = new Date(base || o.ultimaActividad || '2026-01-01');
+    d.setDate(d.getDate() - offsetDays);
+    return d.toISOString().split('T')[0];
+  }
+
+  const rej = f.rej || 0;
+  const motivos = [
+    'Falta firma del responsable técnico',
+    'Documento ilegible o mala calidad de escaneo',
+    'Información desactualizada — revisar fecha de emisión',
+    'Formato incorrecto — usar plantilla vigente',
+  ];
+
+  const lpsUploaded   = f.lpsUploaded || 0;
+  const contraUploaded = f.a - lpsUploaded;
+
+  const items = docs.map((d, di) => {
+    if (di < f.a) {
+      const upload   = mockDate(f.act, f.a - di + 2);
+      const review   = f.act || mockDate(f.act, 1);
+      const byLPS    = di >= contraUploaded;
+      const cargador = byLPS
+        ? `<span style="font-size:10px;font-weight:700;color:#7c3aed;background:#ede9fe;border-radius:4px;padding:1px 6px;margin-left:6px;">Subsanado por LPS</span>`
+        : `<span style="font-size:10px;color:var(--slate);background:var(--slate-lt);border-radius:4px;padding:1px 6px;margin-left:6px;">Contrata</span>`;
+      return `
+        <div class="doc-det-item aprobado">
+          <span style="font-size:14px;flex-shrink:0;">✅</span>
+          <div style="flex:1;min-width:0;">
+            <span class="doc-det-name">${d.nombre}</span>${cargador}
+          </div>
+          <div class="doc-det-dates">
+            <div>Carga: ${fmtDate(upload)}</div>
+            <div style="color:#0a7c4e;font-weight:600;">Rev.: ${fmtDate(review)}</div>
+          </div>
+        </div>`;
+    } else if (di < f.a + f.rev) {
+      const upload = mockDate(null, f.rev - (di - f.a));
+      return `
+        <div class="doc-det-item en-revision">
+          <span style="font-size:14px;flex-shrink:0;">🔄</span>
+          <span class="doc-det-name">${d.nombre}</span>
+          <div class="doc-det-dates">
+            <div>Carga: ${fmtDate(upload)}</div>
+            <div style="color:#b45309;">Pendiente de revisión</div>
+          </div>
+        </div>`;
+    } else if (di < f.a + f.rev + rej) {
+      const upload  = mockDate(null, rej - (di - f.a - f.rev) + 5);
+      const review  = mockDate(null, rej - (di - f.a - f.rev) + 1);
+      const motivo  = motivos[(di - f.a - f.rev) % motivos.length];
+      return `
+        <div class="doc-det-item rechazado">
+          <span style="font-size:14px;flex-shrink:0;">❌</span>
+          <div style="flex:1;min-width:0;">
+            <span class="doc-det-name">${d.nombre}</span>
+            <div class="doc-det-motivo">Motivo: ${motivo}</div>
+          </div>
+          <div class="doc-det-dates">
+            <div>Carga: ${fmtDate(upload)}</div>
+            <div>Rev.: ${fmtDate(review)}</div>
+            <div style="color:#b91c1c;font-weight:600;">Rechazado</div>
+          </div>
+        </div>`;
+    } else {
+      return `
+        <div class="doc-det-item no-cargado">
+          <span style="font-size:14px;flex-shrink:0;">📄</span>
+          <span class="doc-det-name">${d.nombre}</span>
+          <div class="doc-det-dates" style="color:var(--slate);">No cargado</div>
+        </div>`;
+    }
+  }).join('');
+
+  const pct = f.t > 0 ? Math.round(f.a / f.t * 100) : 0;
+  const respLabel = f.resp || o.pm;
+  const sinCargar = f.t - f.a - f.rev - rej;
+  const counterLPS   = lpsUploaded > 0 ? `<span style="color:#7c3aed;font-weight:600;">${lpsUploaded} por LPS</span>` : '';
+  const counterContra = contraUploaded > 0 ? `<span>${contraUploaded} por contrata</span>` : '';
+  const uploaderLine = (lpsUploaded > 0 || contraUploaded > 0)
+    ? `<div style="font-size:10px;color:var(--slate);margin-top:2px;">Subidos: ${[counterContra,counterLPS].filter(Boolean).join(' · ')}</div>` : '';
+  document.getElementById('modal-doc-detalle').innerHTML = `
+    <div class="doc-detalle-panel">
+      <div class="doc-detalle-hdr">
+        <div style="width:28px;height:28px;border-radius:50%;background:${hColor}18;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${hColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${fc.svg}</svg>
+        </div>
+        <div style="flex:1;">
+          <div style="font-weight:700;color:var(--navy);font-size:13px;">${fc.nombre}</div>
+          <div style="font-size:11px;color:var(--slate);">${f.a} aprobados · ${f.rev} en revisión · ${rej} rechazados · ${sinCargar} sin cargar — ${pct}%</div>
+          ${uploaderLine}
+        </div>
+        <div style="display:flex;gap:20px;flex-shrink:0;">
+          <div style="text-align:right;">
+            <div style="font-size:10px;color:var(--slate);text-transform:uppercase;letter-spacing:.05em;">Proveedor</div>
+            <div style="font-size:12px;font-weight:600;color:var(--navy);">${f.prov || 'LPS'}</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:10px;color:var(--slate);text-transform:uppercase;letter-spacing:.05em;">Responsable</div>
+            <div style="font-size:12px;font-weight:600;color:var(--navy);">${respLabel}</div>
+          </div>
+        </div>
+      </div>
+      <div class="doc-detalle-body" style="padding:12px 14px;">${items}</div>
+    </div>
+  `;
+}
+
+function closeModal() {
+  document.getElementById('modal-obra').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modal-obra').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+function show(n) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('s' + n).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => {
+    if (b.getAttribute('onclick') === 'show(' + n + ')') b.classList.add('active');
+  });
+  window.scrollTo(0, 0);
+}
+
+/* ─── CATÁLOGO PEP para auto-llenado ─── */
+const catalogoPEP = {
+  'INFT_001':         { codContable:'CO-01-10@26.03-011', nombre:'INFRAESTRUCTURA TOTAL - SEDE CENTRAL', proyecto:'VERTICALES',  gerencia:'CORPORATIVO', direccion:'FIJA',  dpto:'LIMA',     provincia:'LIMA',          distrito:'LIMA',          dirFisica:'Av. República de Panamá 3030, San Isidro', presupuesto:'95000',  fechaInicio:'2026-03-01', fechaFin:'2026-11-30', estado:'Activo',    pm:'Dilmer Puel'      },
+  'ONPE_939':         { codContable:'CO-01-08@26.01-001', nombre:'(ONPE) GENERAL JOSE MARIA EGUZQUIZA', proyecto:'B2B RECURRENTE', gerencia:'CORPORATIVO', direccion:'FIJA',  dpto:'LIMA',     provincia:'LIMA',          distrito:'LIMA',          dirFisica:'Av. Gral. Eguzquiza 450, Lima',            presupuesto:'85000',  fechaInicio:'2025-10-01', fechaFin:'2026-06-30', estado:'Activo',    pm:'Pedro Marroquin'  },
+  '200MILLAS':        { codContable:'SL-F-01-09@26.04-010', nombre:'200 MILLAS',                        proyecto:'SDP',          gerencia:'SDP',          direccion:'FIJA',  dpto:'LIMA',     provincia:'LIMA',          distrito:'MIRAFLORES',    dirFisica:'Av. 200 Millas 1200, Miraflores',          presupuesto:'62000',  fechaInicio:'2025-09-01', fechaFin:'2026-03-31', estado:'Activo',    pm:'Dilmer Puel'      },
+  'LI0640':           { codContable:'SL-F-02-01@25.08-003', nombre:'29_DE_AGOSTO',                      proyecto:'MIGRACIONES',  gerencia:'MOVIL',        direccion:'MOVIL', dpto:'LIMA',     provincia:'LIMA',          distrito:'SAN BORJA',     dirFisica:'Jr. 29 de Agosto 640, San Borja',          presupuesto:'47500',  fechaInicio:'2025-08-01', fechaFin:'2026-02-28', estado:'Completado',pm:'Ever Chavez'      },
+  '85274285':         { codContable:'CO-03-05@25.11-002', nombre:'85274285_HUANCAVELICA',               proyecto:'B2B',          gerencia:'CORPORATIVO',  direccion:'FIJA',  dpto:'LIMA',     provincia:'HUANCAVELICA',  distrito:'HUANCAVELICA',  dirFisica:'Av. Túpac Amaru 274285, Huancavelica',     presupuesto:'39000',  fechaInicio:'2025-11-01', fechaFin:'2026-04-15', estado:'Activo',    pm:'Pedro Marroquin'  },
+  '85397920':         { codContable:'CO-03-05@25.12-004', nombre:'85397920',                            proyecto:'B2B PMO',       gerencia:'CORPORATIVO',  direccion:'FIJA',  dpto:'LIMA',     provincia:'LIMA',          distrito:'LIMA',          dirFisica:'Av. Principal 397920, Lima',               presupuesto:'55000',  fechaInicio:'2025-12-01', fechaFin:'2026-05-31', estado:'Activo',    pm:'Dilmer Puel'      },
+  'AC1469':           { codContable:'MV-05-02@25.10-005', nombre:'AC1469-CA_NUEVO_TRIUNFO',             proyecto:'ROLL OUT',      gerencia:'MOVIL',        direccion:'MOVIL', dpto:'CUSCO',    provincia:'CUSCO',         distrito:'NUEVO TRIUNFO', dirFisica:'Carretera Cusco-Quillabamba Km 1469',      presupuesto:'72000',  fechaInicio:'2025-10-15', fechaFin:'2026-07-15', estado:'Activo',    pm:'Ever Chavez'      },
+  'AC3642':           { codContable:'MV-05-02@26.01-006', nombre:'AC3642-CA_PIURAY',                    proyecto:'ROLL OUT',      gerencia:'MOVIL',        direccion:'MOVIL', dpto:'CUSCO',    provincia:'URUBAMBA',      distrito:'CHINCHERO',     dirFisica:'Acceso Laguna Piuray, Chinchero',          presupuesto:'48000',  fechaInicio:'2026-01-15', fechaFin:'2026-08-30', estado:'Activo',    pm:'Pedro Marroquin'  },
+  'AC4453':           { codContable:'FJ-06-03@26.02-007', nombre:'AC4453 KITENI - AC 4461 QUELLOUNO',   proyecto:'DORSALES',      gerencia:'FIJA',         direccion:'FIJA',  dpto:'CUSCO',    provincia:'LA CONVENCIÓN', distrito:'KITENI',        dirFisica:'Dorsal Kiteni - Quellouno, La Convención', presupuesto:'130000', fechaInicio:'2026-02-01', fechaFin:'2026-09-30', estado:'Activo',    pm:'Dilmer Puel'      },
+  'LI0720':           { codContable:'MV-04-01@25.09-008', nombre:'ALAMEDA_LOS_PINOS',                   proyecto:'MIGRACIONES',   gerencia:'MOVIL',        direccion:'MOVIL', dpto:'LIMA',     provincia:'LIMA',          distrito:'SAN ISIDRO',    dirFisica:'Alameda Los Pinos 720, San Isidro',        presupuesto:'41000',  fechaInicio:'2025-09-01', fechaFin:'2026-03-15', estado:'Activo',    pm:'Ever Chavez'      },
+  'AM_TR05_EL_PERAL': { codContable:'FJ-07-04@26.01-009', nombre:'AM_TR05_EL_PERAL',                   proyecto:'OVERLAP',       gerencia:'FIJA',         direccion:'FIJA',  dpto:'AREQUIPA', provincia:'AREQUIPA',      distrito:'PAUCARPATA',    dirFisica:'Troncal 05 El Peral, Paucarpata',         presupuesto:'67000',  fechaInicio:'2026-01-01', fechaFin:'2026-07-01', estado:'Activo',    pm:'Pedro Marroquin'  },
+  'PRY08-000002':     { codContable:'SL-F-01-08@26.04-002', nombre:'TRONCAL TR07',                     proyecto:'OVERLAP',       gerencia:'CLARO',        direccion:'FIJA',  dpto:'AMAZONAS', provincia:'CHACHAPOYAS',   distrito:'CHACHAPOYAS',   dirFisica:'Av. ejemplo 123',                         presupuesto:'50000',  fechaInicio:'2026-04-18', fechaFin:'2026-05-30', estado:'Activo',    pm:'Dilmer Puel'      },
+};
+
+/* ─── PROVEEDORES / USUARIOS ─── */
+const proveedores = {
+  '': { label:'— Seleccione proveedor —', usuarios:[] },
+  'LPS': { label:'LPS', usuarios:['Carlos Reyes','Sandra Vega'] },
+  'Tecnocom S.A.': { label:'Tecnocom S.A.', usuarios:['Miguel Soto','Patricia Lima'] },
+  'Constructora Andina S.A.': { label:'Constructora Andina S.A.', usuarios:['Roberto Quispe','Lucía Flores'] },
+  'Redes del Centro SRL': { label:'Redes del Centro SRL', usuarios:['Hugo Mamani','Ana Condori'] },
+  'Buildnet E.I.R.L.': { label:'Buildnet E.I.R.L.', usuarios:['Javier Paz','Diana Torres'] },
+  'Infraestructura Total S.A.': { label:'Infraestructura Total S.A.', usuarios:['Elena Farfán','Marco Ríos'] },
+};
+
+const fasesConfig = [
+  { nombre:'Diseño',     color:'#1d60c8', svg:'<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/>' },
+  { nombre:'Permisos',   color:'#0a7c4e', svg:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>' },
+  { nombre:'Logística',  color:'#b45309', svg:'<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>' },
+  { nombre:'Obra Civil', color:'#6d28d9', svg:'<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>' },
+  { nombre:'PEXT',       color:'#9d174d', svg:'<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>' },
+  { nombre:'PINT',       color:'#0e7490', svg:'<path d="M18 3a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12z"/><path d="M12 8v8m-4-4h8"/>' },
+];
+function getFaseConfig(nombre) {
+  return fasesConfig.find(fc => fc.nombre === nombre) || fasesConfig[0];
+}
+
+/* ─── DOCUMENTOS POR FASE ─── */
+const docsConfig = {
+  'Diseño':     [
+    {nombre:'Plano Arquitectónico AS-BUILT',        req:true },
+    {nombre:'Memoria Descriptiva',                  req:true },
+    {nombre:'Plano de Ubicación y Localización',    req:true },
+    {nombre:'Plano de Red Propuesta',               req:true },
+    {nombre:'Estudio de Factibilidad',              req:false},
+    {nombre:'Cronograma de Trabajo',                req:false},
+    {nombre:'Presupuesto Detallado',                req:false},
+    {nombre:'Especificaciones Técnicas',            req:false},
+  ],
+  'Permisos':   [
+    {nombre:'Licencia Municipal',                   req:true },
+    {nombre:'Autorización OSIPTEL',                 req:true },
+    {nombre:'Permiso de Uso de Vía Pública',        req:true },
+    {nombre:'Certificado de Compatibilidad de Uso', req:true },
+    {nombre:'Autorización SERNANP',                 req:false},
+  ],
+  'Logística':  [
+    {nombre:'Lista de Materiales',                  req:true },
+    {nombre:'Guía de Remisión',                     req:true },
+    {nombre:'Orden de Compra',                      req:true },
+    {nombre:'Certificado de Calidad Materiales',    req:true },
+  ],
+  'Obra Civil': [
+    {nombre:'Acta de Inicio de Obra',               req:true },
+    {nombre:'Registro Fotográfico Pre-Obra',        req:true },
+    {nombre:'Plano de Tendido de Cable',            req:true },
+    {nombre:'Certificado de Empalme',               req:true },
+    {nombre:'Informe de Avance Semanal',            req:false},
+    {nombre:'Control de Calidad de Materiales',     req:false},
+    {nombre:'Registro Fotográfico Durante Obra',    req:false},
+  ],
+  'PINT':       [
+    {nombre:'Informe PINT',                         req:true },
+    {nombre:'Certificado de Instalación Interna',   req:true },
+    {nombre:'Plano As-Built Interno',               req:true },
+    {nombre:'Prueba de Conectividad',               req:true },
+  ],
+  'PEXT':       [
+    {nombre:'Informe PEXT',                         req:true },
+    {nombre:'Registro Fotográfico Post-Obra',       req:true },
+    {nombre:'Acta de Conformidad',                  req:true },
+    {nombre:'Plano As-Built Externo',               req:true },
+    {nombre:'Certificado Final de Obra',            req:false},
+  ],
+};
+
+function toggleFase(i) {
+  const body = document.getElementById('fase-body-' + i);
+  const chev = document.getElementById('fase-chev-' + i);
+  const open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : 'block';
+  chev.style.transform = open ? 'rotate(-90deg)' : 'rotate(0deg)';
+}
+
+function renderDocsSection() {
+  document.getElementById('docs-por-fase').innerHTML = fasesConfig.map((f, i) => {
+    const docs = docsConfig[f.nombre] || [];
+    const baseDocs = docs.map((d, j) => `
+      <div class="doc-item ${d.req ? 'doc-req' : ''}" id="doc-item-${i}-${j}">
+        <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0;">
+          <label class="doc-check-wrap" style="flex:1;min-width:0;">
+            <input type="checkbox" class="doc-check" id="doc-chk-${i}-${j}" checked onchange="onDocCheck(this,${i},${j})" />
+            <span class="doc-name">${d.nombre}</span>
+          </label>
+          <button class="priority-toggle" id="prio-${i}-${j}" onclick="togglePriority(this)" style="display:inline-flex;">★ Prioritario</button>
+        </div>
+      </div>`).join('');
+
+    const subfaseSections = f.nombre === 'Obra Civil'
+      ? subfasesOC.map(sf => {
+          const sfDocs = subfaseDocsConfig[sf] || [];
+          const sfItems = sfDocs.map((d, sj) => `
+            <div class="doc-item ${d.req ? 'doc-req' : ''}" id="doc-sf-${sf.replace(/\s/g,'')}-${sj}">
+              <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0;">
+                <label class="doc-check-wrap" style="flex:1;min-width:0;">
+                  <input type="checkbox" class="doc-check" checked />
+                  <span class="doc-name">${d.nombre}</span>
+                </label>
+                <span style="font-size:10px;font-weight:700;color:var(--blue);background:var(--blue-lt);border-radius:4px;padding:1px 7px;white-space:nowrap;flex-shrink:0;">${sf}</span>
+              </div>
+            </div>`).join('');
+          return `
+            <div id="subfase-docs-${sf.replace(/\s/g,'')}" style="display:block;">
+              <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);padding:8px 14px 4px;background:var(--blue-lt);border-top:1px solid var(--border);">${sf}</div>
+              ${sfItems}
+            </div>`;
+        }).join('')
+      : '';
+
+    const totalCount = f.nombre === 'Obra Civil'
+      ? docs.length + subfasesOC.reduce((s,sf) => s + (subfaseDocsConfig[sf]||[]).length, 0)
+      : docs.length;
+
+    return `
+      <div class="fase-accordion" id="fase-accordion-${i}">
+        <div class="fase-acc-hdr" onclick="toggleFase(${i})">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:28px;height:28px;border-radius:50%;background:${f.color}18;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${f.color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${f.svg}</svg>
+            </div>
+            <span class="fase-acc-name">${f.nombre}</span>
+            <span class="fase-acc-count" id="doc-count-${i}">${totalCount} docs</span>
+          </div>
+          <svg id="fase-chev-${i}" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--slate)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .2s;flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="fase-acc-body" id="fase-body-${i}">${baseDocs}${subfaseSections}</div>
+      </div>`;
+  }).join('');
+}
+
+function toggleSubfaseDocs(subfase, checked) {
+  const key = subfase.replace(/\s/g, '');
+  const el  = document.getElementById('subfase-docs-' + key);
+  if (el) el.style.display = checked ? 'block' : 'none';
+  const ocIdx = fasesConfig.findIndex(f => f.nombre === 'Obra Civil');
+  const countEl = document.getElementById('doc-count-' + ocIdx);
+  if (countEl) {
+    const baseDocs = (docsConfig['Obra Civil'] || []).length;
+    const sfCount  = subfasesOC.reduce((s, sf) => {
+      const sfEl = document.getElementById('subfase-docs-' + sf.replace(/\s/g,''));
+      return s + (sfEl && sfEl.style.display !== 'none' ? (subfaseDocsConfig[sf]||[]).length : 0);
+    }, 0);
+    countEl.textContent = (baseDocs + sfCount) + ' docs';
+  }
+}
+
+function onDocCheck(cb, fi, di) {
+  const btn = document.getElementById('prio-' + fi + '-' + di);
+  if (!cb.checked) {
+    btn.style.display = 'none';
+    btn.classList.remove('active');
+  } else {
+    btn.style.display = 'inline-flex';
+  }
+}
+
+function togglePriority(btn) {
+  btn.classList.toggle('active');
+}
+
+/* ─── SUBFASES OBRA CIVIL ─── */
+const subfasesOC = ['Cámaras', 'Canalización', 'Postes'];
+const subfaseDocsConfig = {
+  'Cámaras':      [
+    {nombre:'Plano de Cámaras de Inspección',       req:true },
+    {nombre:'Protocolo de Pruebas de Cámaras',       req:true },
+    {nombre:'Certificado de Instalación de Cámaras', req:false},
+  ],
+  'Canalización': [
+    {nombre:'Plano de Canalización Subterránea',    req:true },
+    {nombre:'Certificado de Compactación de Zanja', req:true },
+    {nombre:'Memoria de Cálculo de Ductos',          req:false},
+  ],
+  'Postes':       [
+    {nombre:'Plano de Postes y Anclajes',            req:true },
+    {nombre:'Certificado de Instalación de Postes',  req:true },
+    {nombre:'Cálculo Estructural de Postes',         req:false},
+  ],
+};
+
+function renderPhasesResp() {
+  const LPS_DEFAULT = new Set([0, 1, 2]); // Diseño, Permisos, Logística — LPS por defecto
+  const lpsUsers = proveedores['LPS'].usuarios;
+
+  const provOpts = (selectedKey) => Object.keys(proveedores)
+    .filter(k => k !== '')
+    .map(k => `<option value="${k}"${k === selectedKey ? ' selected' : ''}>${proveedores[k].label}</option>`)
+    .join('');
+
+  document.getElementById('phases-resp-grid').innerHTML = fasesConfig.map((f, i) => {
+    const defaultProv = LPS_DEFAULT.has(i) ? 'LPS' : '';
+    const lpsSelected = defaultProv === 'LPS';
+    const userOpts = lpsSelected
+      ? '<option value="">— Usuario responsable —</option>' + lpsUsers.map(u => `<option value="${u}">${u}</option>`).join('')
+      : '<option value="">— Usuario responsable —</option>';
+
+    const fields = `
+      <div class="phase-resp-selects" id="phase-fields-${i}">
+        <select class="phase-resp-sel${lpsSelected ? ' filled' : ''}" id="prov-${i}" onchange="onProvChange(${i})">
+          <option value="">— Proveedor —</option>
+          ${provOpts(defaultProv)}
+        </select>
+        <select class="phase-resp-sel" id="user-${i}" ${lpsSelected ? '' : 'disabled style="display:none;"'}
+          onchange="this.classList.toggle('filled',!!this.value)">
+          ${userOpts}
+        </select>
+        <div class="phase-date-row" id="date-row-${i}">
+          <div>
+            <div class="phase-date-lbl">Inicio</div>
+            <input type="date" class="phase-resp-sel" id="date-ini-${i}" style="padding:6px 7px;font-size:10px;" />
+          </div>
+          <div>
+            <div class="phase-date-lbl">Fin</div>
+            <input type="date" class="phase-resp-sel" id="date-fin-${i}" style="padding:6px 7px;font-size:10px;" />
+          </div>
+        </div>
+        ${i === 3 ? `
+        <div style="font-size:9px;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:.06em;margin-top:2px;">Subfases</div>
+        <div style="display:flex;flex-direction:column;gap:5px;width:100%;">
+          ${subfasesOC.map(sf => `
+          <label style="display:flex;align-items:center;gap:7px;font-size:11px;font-weight:500;color:var(--navy);cursor:pointer;padding:5px 8px;border-radius:6px;border:1.5px solid var(--border);background:white;">
+            <input type="checkbox" checked style="accent-color:var(--blue);width:13px;height:13px;cursor:pointer;flex-shrink:0;" onchange="toggleSubfaseDocs('${sf}', this.checked)" />
+            ${sf}
+          </label>`).join('')}
+        </div>` : ''}
+      </div>`;
+
+    return `
+    <div class="phase-resp-card" id="phase-card-${i}">
+      <div style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:6px;">
+        <div style="display:flex;align-items:center;gap:7px;">
+          <div style="width:22px;height:22px;border-radius:50%;background:${f.color}18;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="${f.color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${f.svg}</svg>
+          </div>
+          <div class="phase-resp-name">${f.nombre}</div>
+        </div>
+        <label class="toggle-switch" title="Activar/desactivar fase">
+          <input type="checkbox" checked onchange="toggleFaseCard(${i},this)" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="phase-resp-icon" style="border-color:${f.color}20;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${f.color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${f.svg}</svg>
+      </div>
+      ${fields}
+    </div>`;
+  }).join('');
+}
+
+function toggleFaseCard(i, cb) {
+  const card   = document.getElementById('phase-card-' + i);
+  const fields = document.getElementById('phase-fields-' + i);
+  const prov   = document.getElementById('prov-' + i);
+  const user   = document.getElementById('user-' + i);
+  const ini    = document.getElementById('date-ini-' + i);
+  const fin    = document.getElementById('date-fin-' + i);
+  const acc    = document.getElementById('fase-accordion-' + i);
+
+  if (!cb.checked) {
+    card.classList.add('disabled');
+    fields.style.pointerEvents = 'none';
+    if (prov) { prov.value = ''; prov.classList.remove('filled'); }
+    if (user) { user.classList.remove('filled'); }
+    if (ini)  { ini.value  = ''; ini.classList.remove('filled'); }
+    if (fin)  { fin.value  = ''; fin.classList.remove('filled'); }
+    if (acc)  { acc.style.display = 'none'; }
+  } else {
+    card.classList.remove('disabled');
+    fields.style.pointerEvents = '';
+    if (acc) { acc.style.display = ''; }
+  }
+}
+
+function onProvChange(i) {
+  const provSel  = document.getElementById('prov-' + i);
+  const userSel  = document.getElementById('user-' + i);
+  const dateRow  = document.getElementById('date-row-' + i);
+  const key      = provSel.value;
+  const isLPS    = key === 'LPS';
+  const usuarios = isLPS ? proveedores[key].usuarios : [];
+
+  provSel.classList.toggle('filled', !!key);
+
+  userSel.style.display = isLPS ? '' : 'none';
+
+  if (isLPS) {
+    userSel.innerHTML = '<option value="">— Usuario responsable —</option>' +
+      usuarios.map(u => `<option value="${u}">${u}</option>`).join('');
+    userSel.disabled = false;
+    userSel.classList.remove('filled');
+    userSel.onchange = () => userSel.classList.toggle('filled', !!userSel.value);
+  } else {
+    userSel.innerHTML = '<option value="">— Usuario responsable —</option>';
+    userSel.disabled = true;
+    userSel.classList.remove('filled');
+  }
+}
+
+renderPhasesResp();
+renderDocsSection();
+
+function onPepInput() {
+  const val = document.getElementById('f-pep').value.trim();
+  document.getElementById('pep-btn').disabled = val.length === 0;
+  if (!val) {
+    const hint = document.getElementById('pep-hint');
+    hint.textContent = 'Ingrese el código PEP y presione Cargar datos para completar el formulario automáticamente.';
+    hint.style.color = 'var(--blue)';
+  }
+}
+
+function autoFill() {
+  const raw = document.getElementById('f-pep').value.trim();
+  const key = Object.keys(catalogoPEP).find(k => k.toUpperCase() === raw.toUpperCase());
+  const d   = key ? catalogoPEP[key] : null;
+  const hint = document.getElementById('pep-hint');
+
+  if (!d) {
+    hint.innerHTML = '&#9888; Código PEP no encontrado. Verifique el código e intente nuevamente.';
+    hint.style.color = 'var(--red)';
+    return;
+  }
+
+  function setVal(id, val) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.value = val;
+    el.classList.add('filled');
+  }
+
+  setVal('f-cod-contable',  d.codContable);
+  setVal('f-nombre-obra',   d.nombre);
+  setVal('f-proyecto',      d.proyecto);
+  setVal('f-gerencia',      d.gerencia);
+  setVal('f-direccion',     d.direccion);
+  setVal('f-dpto',          d.dpto);
+  setVal('f-provincia',     d.provincia);
+  setVal('f-distrito',      d.distrito);
+  setVal('f-dir-fisica',    d.dirFisica);
+  setVal('f-presupuesto',   d.presupuesto);
+  setVal('f-fecha-inicio',  d.fechaInicio);
+  setVal('f-fecha-fin',     d.fechaFin);
+  setVal('f-estado',        d.estado);
+  setVal('f-pm',            d.pm || '');
+
+  hint.innerHTML = '&#10003; Datos cargados correctamente. Revise la información antes de guardar.';
+  hint.style.color = 'var(--green)';
+  document.getElementById('btn-guardar').disabled = false;
+}
+
+/* ─── VISTA PROVEEDOR ─── */
+
+function getActiveFilter() {
+  const val = document.getElementById('prov-rol-sel').value;
+  if (val.startsWith('lps:')) return { type: 'lps', name: val.slice(4) };
+  return { type: 'prov', name: val };
+}
+
+function fasesForFilter(obra, filter) {
+  return obra.fases
+    .map((f, i) => ({ ...f, _fi: i }))
+    .filter(f => filter.type === 'lps'
+      ? f.prov === 'LPS' && f.resp === filter.name
+      : f.prov === filter.name);
+}
+
+function initProveedorVista() {
+  const provSet = new Set();
+  const lpsSet  = new Set();
+  obras.forEach(o => o.fases.forEach(f => {
+    if (f.prov === 'LPS') lpsSet.add(f.resp);
+    else provSet.add(f.prov);
+  }));
+  const provs    = [...provSet].sort();
+  const lpsUsers = [...lpsSet].sort();
+  const sel = document.getElementById('prov-rol-sel');
+  sel.innerHTML =
+    `<optgroup label="Proveedores">${provs.map(p => `<option value="${p}">${p}</option>`).join('')}</optgroup>` +
+    `<optgroup label="Usuarios LPS">${lpsUsers.map(u => `<option value="lps:${u}">${u}</option>`).join('')}</optgroup>`;
+  sel.value = provs.includes('Tecnocom S.A.') ? 'Tecnocom S.A.' : (provs[0] || '');
+  switchProveedorVista();
+}
+
+function switchProveedorVista() {
+  const filter   = getActiveFilter();
+  const label    = filter.name;
+  const initials = label.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
+  document.getElementById('prov-avatar').textContent = initials;
+  document.getElementById('prov-display-name').textContent = label + (filter.type === 'lps' ? ' (LPS)' : '');
+  renderProvObrasList();
+}
+
+function renderProvObrasList() {
+  const filter   = getActiveFilter();
+  const filtradas = obras.map((o, i) => ({ ...o, _idx: i }))
+                         .filter(o => fasesForFilter(o, filter).length > 0);
+
+  document.getElementById('prov-lista-sub').textContent =
+    filtradas.length === 0 ? 'Sin obras asignadas.' :
+    `${filtradas.length} obra${filtradas.length > 1 ? 's' : ''} asignada${filtradas.length > 1 ? 's' : ''}`;
+
+  document.getElementById('prov-tabla-body').innerHTML = filtradas.map(o => {
+    const fasesAsig = fasesForFilter(o, filter);
+    const totalDocs = fasesAsig.reduce((s,f) => s+f.t, 0);
+    const cargados  = fasesAsig.reduce((s,f) => s+f.a+(f.rev||0)+(f.rej||0), 0);
+    const p = totalDocs > 0 ? Math.round(cargados / totalDocs * 100) : 0;
+    return `
+    <tr onclick="openProvObra(${o._idx})">
+      <td style="text-align:center;padding:0 8px;">${healthDot(p)}</td>
+      <td class="mono bold">${o.pep}</td>
+      <td style="font-weight:600;color:var(--navy);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${o.nombre}">${o.nombre}</td>
+      <td style="font-size:12px;color:var(--slate);">${o.proyecto}</td>
+      <td style="font-size:12px;color:var(--slate);">${o.gerencia}</td>
+      <td style="font-size:12px;color:var(--slate);">${o.dpto}</td>
+      <td style="font-size:12px;color:var(--slate);">${o.pm}</td>
+      <td>
+        <div class="prog-cell">
+          <div class="prog-track"><div class="prog-fill" style="width:${p}%;background:${barColor(p)};"></div></div>
+          <span class="prog-pct" style="color:${barColor(p)};">${p}%</span>
+        </div>
+      </td>
+    </tr>`;
+  }).join('') || `<tr><td colspan="8" style="text-align:center;padding:24px;color:var(--slate);font-size:13px;">No hay obras asignadas.</td></tr>`;
+
+  document.getElementById('prov-lista-screen').style.display = '';
+  document.getElementById('prov-detalle-screen').style.display = 'none';
+}
+
+function openProvObra(idx) {
+  const o      = obras[idx];
+  const filter = getActiveFilter();
+  const fasesAsignadas = fasesForFilter(o, filter);
+
+  currentObraIdx = idx;
+  document.getElementById('prov-det-nombre').textContent = o.nombre;
+  document.getElementById('prov-det-meta').textContent = o.pep + '  ·  ' + o.proyecto + '  ·  ' + o.gerencia;
+
+  if (isLPUProject(o)) {
+    renderLPUWidgetProv(o.pep, idx);
+  } else {
+    document.getElementById('prov-lpu-widget').innerHTML = '';
+  }
+
+  const motivos = [
+    'Falta firma del responsable técnico',
+    'Documento ilegible o mala calidad de escaneo',
+    'Información desactualizada — revisar fecha de emisión',
+    'Formato incorrecto — usar plantilla vigente',
+  ];
+
+  function mockDate(base, offset) {
+    const d = new Date(base || o.ultimaActividad || '2026-01-01');
+    d.setDate(d.getDate() - offset);
+    return d.toISOString().split('T')[0];
+  }
+
+  const todasFases = o.fases.map((f, i) => ({ ...f, _fi: i }));
+
+  document.getElementById('prov-fases-container').innerHTML = todasFases.map(f => {
+    const fi  = f._fi;
+    const fc  = getFaseConfig(f.n);
+    const docs = (docsConfig[f.n] || []).slice(0, f.t);
+    const aprobados  = f.a;
+    const enRev      = f.rev || 0;
+    const rechazados = f.rej || 0;
+    const esPropia   = fasesAsignadas.some(fa => fa._fi === fi);
+
+    const rows = docs.map((d, di) => {
+      const prioBadge = d.req ? `<span class="prov-prio-badge">★ Prioritario</span>` : '';
+
+      if (di < aprobados) {
+        const upload = mockDate(f.act, aprobados - di + 2);
+        const review = f.act || mockDate(f.act, 1);
+        return `
+          <div class="prov-doc-row aprobado">
+            <div class="prov-doc-icon">✅</div>
+            <div class="prov-doc-info">
+              <div class="prov-doc-name">${d.nombre} ${prioBadge}</div>
+            </div>
+            <div class="prov-doc-dates">
+              <div>Carga: ${fmtDate(upload)}</div>
+              <div style="color:#0a7c4e;font-weight:600;">Rev.: ${fmtDate(review)}</div>
+            </div>
+            <span class="doc-status-tag tag-aprobado">✓ Aprobado</span>
+          </div>`;
+      } else if (di < aprobados + enRev) {
+        const upload = mockDate(null, enRev - (di - aprobados) + 2);
+        return `
+          <div class="prov-doc-row en-revision">
+            <div class="prov-doc-icon">🔄</div>
+            <div class="prov-doc-info">
+              <div class="prov-doc-name">${d.nombre} ${prioBadge}</div>
+            </div>
+            <div class="prov-doc-dates">
+              <div>Carga: ${fmtDate(upload)}</div>
+            </div>
+            <span class="doc-status-tag tag-revision">⏳ En revisión</span>
+          </div>`;
+      } else if (di < aprobados + enRev + rechazados) {
+        const upload = mockDate(null, rechazados - (di - aprobados - enRev) + 5);
+        const review = mockDate(null, rechazados - (di - aprobados - enRev) + 1);
+        const motivo = motivos[(di - aprobados - enRev) % motivos.length];
+        return `
+          <div class="prov-doc-row rechazado">
+            <div class="prov-doc-icon">❌</div>
+            <div class="prov-doc-info">
+              <div class="prov-doc-name">${d.nombre} ${prioBadge}</div>
+              <div class="prov-doc-motivo">Motivo: ${motivo}</div>
+              ${esPropia ? `<label class="doc-upload-area" id="upl-rech-${idx}-${fi}-${di}" onclick="markUploaded(this)">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                <span>Subsanar — subir nuevo archivo</span>
+                <input type="file" style="display:none;" />
+              </label>` : ''}
+            </div>
+            <div class="prov-doc-dates">
+              <div>Carga: ${fmtDate(upload)}</div>
+              <div style="color:#b91c1c;">Rev.: ${fmtDate(review)}</div>
+            </div>
+            <span class="doc-status-tag tag-rechazado">✕ Rechazado</span>
+          </div>`;
+      } else {
+        return `
+          <div class="prov-doc-row no-cargado">
+            <div class="prov-doc-icon">📄</div>
+            <div class="prov-doc-info">
+              <div class="prov-doc-name">${d.nombre} ${prioBadge}</div>
+              ${esPropia ? `<label class="doc-upload-area" id="upl-${idx}-${fi}-${di}" onclick="markUploaded(this)">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                <span>Subir archivo</span>
+                <input type="file" style="display:none;" />
+              </label>` : ''}
+            </div>
+            <div class="prov-doc-dates"></div>
+            <span class="doc-status-tag tag-pendiente">○ Pendiente</span>
+          </div>`;
+      }
+    }).join('');
+
+    const c_color = aprobados === f.t && f.t > 0 ? '#0a7c4e' : esPropia ? '#1d60c8' : '#94a3b8';
+    return `
+      <div class="prov-fase-section" style="${!esPropia ? 'opacity:.75;' : ''}">
+        <div class="prov-fase-hdr">
+          <div style="width:32px;height:32px;border-radius:50%;background:${c_color}18;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="${c_color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${fc.svg}</svg>
+          </div>
+          <div class="prov-fase-hdr-name">${fc.nombre}</div>
+          <div class="prov-fase-hdr-sub">${aprobados}/${f.t} aprobados${rechazados > 0 ? ' · <span style="color:#b91c1c;">'+rechazados+' rechazado'+(rechazados>1?'s':'')+'</span>' : ''}</div>
+          ${!esPropia ? `<span style="margin-left:auto;font-size:10px;font-weight:600;color:var(--slate);background:var(--slate-lt);border:1px solid var(--border);border-radius:5px;padding:2px 8px;white-space:nowrap;">👤 ${f.prov || f.resp}</span>` : ''}
+        </div>
+        ${rows || '<div style="padding:16px;color:var(--slate);font-size:13px;">Sin documentos asignados.</div>'}
+      </div>`;
+  }).join('');
+
+  document.getElementById('prov-lista-screen').style.display = 'none';
+  document.getElementById('prov-detalle-screen').style.display = '';
+  window.scrollTo(0, 0);
+}
+
+function backToProvList() {
+  document.getElementById('prov-detalle-screen').style.display = 'none';
+  document.getElementById('prov-lista-screen').style.display = '';
+  window.scrollTo(0, 0);
+}
+
+function markUploaded(label) {
+  if (label.classList.contains('uploaded')) return;
+  label.classList.add('uploaded');
+  label.querySelector('span').textContent = 'archivo_cargado.pdf';
+}
+
+/* ─── VISTA REVISOR LPS ─── */
+
+const docBaseInfo = {};
+const docHistorialOverrides = {};
+
+function renderRevTable() {
+  const search    = ((document.getElementById('rev-search')           || {}).value || '').trim().toLowerCase();
+  const estadoVal = (document.getElementById('rev-filter-estado')     || {}).value || '';
+  const proyVal   = (document.getElementById('rev-filter-proyecto')   || {}).value || '';
+  const provVal   = (document.getElementById('rev-filter-proveedor')  || {}).value || '';
+  const pmVal     = (document.getElementById('rev-filter-pm')         || {}).value || '';
+
+  const filtered = obras
+    .map((o, i) => ({ o, i }))
+    .filter(({ o }) => {
+      if (search    && !o.pep.toLowerCase().includes(search) && !o.nombre.toLowerCase().includes(search)) return false;
+      if (!matchEstadoFilter(o, estadoVal))      return false;
+      if (proyVal   && o.proyecto !== proyVal)   return false;
+      if (provVal   && o.contrata !== provVal)   return false;
+      if (pmVal     && o.pm       !== pmVal)     return false;
+      return true;
+    });
+
+  const noResults = document.getElementById('rev-no-results');
+  const tblWrap   = document.getElementById('rev-tbl-wrap');
+  if (filtered.length === 0) {
+    if (noResults) noResults.style.display = '';
+    if (tblWrap)   tblWrap.style.display   = 'none';
+    return;
+  }
+  if (noResults) noResults.style.display = 'none';
+  if (tblWrap)   tblWrap.style.display   = '';
+
+  document.getElementById('rev-tabla-body').innerHTML = filtered.map(({ o, i }) => {
+    const totalDocs = o.fases.reduce((s,f) => s+f.t, 0);
+    const cargados  = o.fases.reduce((s,f) => s+f.a+(f.rev||0)+(f.rej||0), 0);
+    const p = totalDocs > 0 ? Math.round(cargados / totalDocs * 100) : 0;
+    const estadoBadge = o.estado === 'Completado'
+      ? `<span style="font-size:10px;font-weight:700;color:#0a7c4e;background:#e6f5ee;padding:2px 7px;border-radius:4px;">✓ Completado</span>`
+      : `<span style="font-size:10px;font-weight:700;color:#b45309;background:#fef3c7;padding:2px 7px;border-radius:4px;">● En Curso</span>`;
+    return `
+    <tr onclick="openRevObra(${i})">
+      <td style="text-align:center;padding:0 8px;">${healthDot(p)}</td>
+      <td class="mono bold">${o.pep}</td>
+      <td style="font-weight:600;color:var(--navy);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${o.nombre}">${o.nombre}</td>
+      <td style="font-size:12px;color:var(--slate);">${o.proyecto}</td>
+      <td style="font-size:12px;color:var(--slate);">${o.gerencia}</td>
+      <td style="font-size:12px;color:var(--slate);">${o.dpto}</td>
+      <td style="font-size:12px;color:var(--slate);">${o.contrata || o.pm}</td>
+      <td>${estadoBadge}</td>
+      <td>
+        <div class="prog-cell">
+          <div class="prog-track"><div class="prog-fill" style="width:${p}%;background:${barColor(p)};"></div></div>
+          <span class="prog-pct" style="color:${barColor(p)};">${p}%</span>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function initRevFilters() {
+  const provEl = document.getElementById('rev-filter-proveedor');
+  if (!provEl) return;
+  const contratas = [...new Set(obras.map(o => o.contrata).filter(Boolean))].sort();
+  contratas.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c;
+    opt.textContent = c;
+    provEl.appendChild(opt);
+  });
+
+  const pmEl = document.getElementById('rev-filter-pm');
+  if (!pmEl) return;
+  const pms = [...new Set(obras.map(o => o.pm).filter(Boolean))].sort();
+  pms.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p;
+    opt.textContent = p;
+    pmEl.appendChild(opt);
+  });
+}
+
+function clearRevFilters() {
+  ['rev-search', 'rev-filter-estado', 'rev-filter-proyecto', 'rev-filter-proveedor', 'rev-filter-pm'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  renderRevTable();
+}
+
+function openRevObra(idx) {
+  const o = obras[idx];
+  document.getElementById('rev-modal-nombre').textContent = o.nombre;
+  document.getElementById('rev-modal-meta').textContent = o.pep + '  ·  ' + o.proyecto + '  ·  ' + o.gerencia;
+
+  const activeFi = o.fases.findIndex((f, fi) => f.a < f.t);
+  const currentFi = activeFi >= 0 ? activeFi : o.fases.length - 1;
+
+  const C_GREEN = '#0a7c4e', C_BLUE = '#1d60c8', C_GRAY = '#94a3b8';
+
+  document.getElementById('rev-modal-fases').innerHTML = o.fases.map((f, fi) => {
+    const fc  = getFaseConfig(f.n);
+    const pct = f.t > 0 ? Math.round(f.a / f.t * 100) : 0;
+    const isComplete = f.a === f.t && f.t > 0;
+    const isCurrent  = fi === currentFi;
+    const fColor = isComplete ? C_GREEN : isCurrent ? C_BLUE : C_GRAY;
+    let statusBadge = '';
+    if (isComplete)     statusBadge = `<span style="font-size:10px;color:${C_GREEN};font-weight:700;">✓ Completa</span>`;
+    else if (isCurrent) statusBadge = `<span style="font-size:10px;color:${C_BLUE};font-weight:700;">● Actual</span>`;
+    else if (f.rev > 0) statusBadge = `<span style="font-size:10px;color:#b45309;font-weight:700;">${f.rev} revisar</span>`;
+    else                statusBadge = `<span style="font-size:10px;color:${C_GRAY};">—</span>`;
+    return `
+      <div class="phase-stat" id="rev-fase-card-${fi}" style="border-top-color:${fColor};cursor:pointer;" onclick="selectRevFase(${idx},${fi})">
+        <div style="display:flex;justify-content:center;margin-bottom:6px;">
+          <div style="width:28px;height:28px;border-radius:50%;background:${fColor}18;display:flex;align-items:center;justify-content:center;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${fColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${fc.svg}</svg>
+          </div>
+        </div>
+        <div class="phase-name">${f.n}</div>
+        <div class="phase-frac" style="color:${fColor};">${f.a}/${f.t}</div>
+        <div class="phase-mini">
+          <div class="phase-mini-fill" style="width:${pct}%;background:${fColor};"></div>
+        </div>
+        <div style="font-size:10px;font-weight:700;font-family:var(--mono);color:${fColor};margin-top:4px;">${pct}%</div>
+        ${statusBadge}
+      </div>`;
+  }).join('');
+
+  document.getElementById('rev-modal-docs').innerHTML =
+    `<p style="color:var(--slate);font-size:13px;padding:8px 0;">Seleccione una fase para ver los documentos.</p>`;
+
+  document.getElementById('rev-modal').classList.remove('hidden');
+  currentRevObraIdx = idx;
+  renderLPUSectionRev(idx);
+  selectRevFase(idx, currentFi);
+}
+
+function selectRevFase(obraIdx, fi) {
+  const o   = obras[obraIdx];
+  const f   = o.fases[fi];
+  const fc  = getFaseConfig(f.n);
+  const allDocs = docsConfig[f.n] || [];
+  const docs    = allDocs.slice(0, f.t);
+
+  const aprobados  = f.a;
+  const enRev      = f.rev || 0;
+  const rechazados = f.rej || 0;
+
+  const motivos = [
+    'Falta firma del responsable técnico',
+    'Documento ilegible o mala calidad de escaneo',
+    'Información desactualizada — revisar fecha de emisión',
+    'Formato incorrecto — usar plantilla vigente',
+  ];
+
+  function mockDate(base, offset) {
+    const d = new Date(base || o.ultimaActividad || '2026-01-01');
+    d.setDate(d.getDate() - offset);
+    return d.toISOString().split('T')[0];
+  }
+
+  const rows = docs.map((d, di) => {
+    const prioBadge = d.req ? `<span class="prov-prio-badge">★ Prioritario</span>` : '';
+    const uid = `rev-${obraIdx}-${fi}-${di}`;
+
+    const dlBtn = `<button class="btn-download" onclick="simDownload(this)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Descargar</button>`;
+
+    if (di < aprobados) {
+      const upload = mockDate(f.act, aprobados - di + 2);
+      const review = f.act || mockDate(f.act, 1);
+      docBaseInfo[uid] = { nombre: d.nombre, estado: 'aprobado', uploadDate: upload, reviewDate: review, motivo: '', isRich: false };
+      return `
+        <div class="rev-doc-row aprobado" id="${uid}">
+          <div class="rev-doc-icon">✅</div>
+          <div class="rev-doc-body">
+            <div class="rev-doc-top">
+              <div class="rev-doc-name">${d.nombre} ${prioBadge}</div>
+              <div class="rev-doc-actions"><button class="btn-historial" onclick="abrirHistorialDoc('${uid}')">📋 Historial</button>${dlBtn}<span class="rev-doc-done-badge rev-done-aprobado">✓ Aprobado</span></div>
+            </div>
+            <div class="rev-doc-dates">Carga: ${fmtDate(upload)} · Rev.: ${fmtDate(review)}</div>
+          </div>
+        </div>`;
+    } else if (di < aprobados + enRev) {
+      const upload = mockDate(null, enRev - (di - aprobados) + 2);
+      docBaseInfo[uid] = { nombre: d.nombre, estado: 'en-revision', uploadDate: upload, reviewDate: '', motivo: '', isRich: false };
+      return `
+        <div class="rev-doc-row en-revision" id="${uid}">
+          <div class="rev-doc-icon">🔄</div>
+          <div class="rev-doc-body">
+            <div class="rev-doc-top">
+              <div class="rev-doc-name">${d.nombre} ${prioBadge}</div>
+              <div class="rev-doc-actions" style="flex-wrap:wrap;">
+                <button class="btn-historial" onclick="abrirHistorialDoc('${uid}')">📋 Historial</button>
+                <button class="btn-upload-revisor" onclick="mostrarFormSubidaRevisor('${uid}')">⬆ Subir como revisor</button>
+                ${dlBtn}
+                <button class="btn-aprobar" onclick="aprobarDoc('${uid}')">✓ Aprobar</button>
+                <button class="btn-rechazar" onclick="mostrarFormRechazo('${uid}')">✕ Rechazar</button>
+              </div>
+            </div>
+            <div class="rev-doc-dates">Carga: ${fmtDate(upload)}</div>
+            <div class="rev-motivo-form" id="form-${uid}">
+              <div style="font-size:11px;font-weight:600;color:#b91c1c;margin-bottom:5px;">Motivo del rechazo</div>
+              <textarea class="rev-motivo-textarea" id="txt-${uid}" placeholder="Describa el motivo del rechazo..."></textarea>
+              <br>
+              <button class="btn-confirmar-rechazo" onclick="confirmarRechazo('${uid}')">Confirmar rechazo</button>
+            </div>
+            <div class="rev-upload-form" id="upload-revisor-form-${uid}">
+              <div style="font-size:11px;font-weight:700;color:#7c3aed;margin-bottom:5px;">⬆ Cargar documento como revisor</div>
+              <div style="font-size:11px;color:var(--slate);margin-bottom:8px;">El documento será registrado a nombre del revisor LPS y aprobado automáticamente.</div>
+              <label class="rev-upload-area"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg><span>Seleccionar archivo para subir</span><input type="file" style="display:none;" accept=".pdf,.jpg,.png,.docx"></label>
+              <button class="btn-upload-revisor" style="margin-top:8px;" onclick="confirmarSubidaRevisor('${uid}')">⬆ Subir y aprobar</button>
+            </div>
+          </div>
+        </div>`;
+    } else if (di < aprobados + enRev + rechazados) {
+      const upload = mockDate(null, rechazados - (di - aprobados - enRev) + 5);
+      const review = mockDate(null, rechazados - (di - aprobados - enRev) + 1);
+      const motivo = motivos[(di - aprobados - enRev) % motivos.length];
+      docBaseInfo[uid] = { nombre: d.nombre, estado: 'rechazado', uploadDate: upload, reviewDate: review, motivo, isRich: true };
+      return `
+        <div class="rev-doc-row rechazado" id="${uid}">
+          <div class="rev-doc-icon">❌</div>
+          <div class="rev-doc-body">
+            <div class="rev-doc-top">
+              <div class="rev-doc-name">${d.nombre} ${prioBadge}</div>
+              <div class="rev-doc-actions" style="flex-wrap:wrap;">
+                <button class="btn-historial" onclick="abrirHistorialDoc('${uid}')">📋 Historial</button>
+                <button class="btn-upload-revisor" onclick="mostrarFormSubidaRevisor('${uid}')">⬆ Subir como revisor</button>
+                <span class="rev-doc-done-badge rev-done-rechazado">✕ Rechazado</span>
+              </div>
+            </div>
+            <div class="rev-doc-dates">Carga: ${fmtDate(upload)} · Rev.: ${fmtDate(review)}</div>
+            <div class="rev-doc-motivo-txt">Motivo: ${motivo}</div>
+            <div class="rev-upload-form" id="upload-revisor-form-${uid}">
+              <div style="font-size:11px;font-weight:700;color:#7c3aed;margin-bottom:5px;">⬆ Cargar documento como revisor</div>
+              <div style="font-size:11px;color:var(--slate);margin-bottom:8px;">El documento será registrado a nombre del revisor LPS y aprobado automáticamente.</div>
+              <label class="rev-upload-area"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg><span>Seleccionar archivo para subir</span><input type="file" style="display:none;" accept=".pdf,.jpg,.png,.docx"></label>
+              <button class="btn-upload-revisor" style="margin-top:8px;" onclick="confirmarSubidaRevisor('${uid}')">⬆ Subir y aprobar</button>
+            </div>
+          </div>
+        </div>`;
+    } else {
+      return `
+        <div class="rev-doc-row no-cargado" id="${uid}">
+          <div class="rev-doc-icon">📄</div>
+          <div class="rev-doc-body">
+            <div class="rev-doc-top">
+              <div class="rev-doc-name">${d.nombre} ${prioBadge}</div>
+              <div class="rev-doc-actions"><span class="doc-status-tag tag-pendiente">○ No cargado</span></div>
+            </div>
+          </div>
+        </div>`;
+    }
+  }).join('');
+
+  document.getElementById('rev-modal-docs').innerHTML = rows ||
+    `<p style="color:var(--slate);font-size:13px;padding:8px 0;">Sin documentos para esta fase.</p>`;
+
+  const o2 = obras[obraIdx];
+  const activeFi2 = o2.fases.findIndex(f => f.a < f.t);
+  const currentFi2 = activeFi2 >= 0 ? activeFi2 : o2.fases.length - 1;
+  const isComplete2 = o2.fases[fi].a === o2.fases[fi].t && o2.fases[fi].t > 0;
+  const hColor = isComplete2 ? '#0a7c4e' : fi === currentFi2 ? '#1d60c8' : '#94a3b8';
+
+  document.querySelectorAll('[id^="rev-fase-card-"]').forEach(c => {
+    c.style.outline = '';
+    c.style.boxShadow = '';
+  });
+  const selCard = document.getElementById('rev-fase-card-' + fi);
+  if (selCard) {
+    selCard.style.outline = `2px solid ${hColor}`;
+    selCard.style.boxShadow = `0 0 0 4px ${hColor}22`;
+  }
+}
+
+function closeRevModal(e) {
+  if (e.target === document.getElementById('rev-modal')) {
+    document.getElementById('rev-modal').classList.add('hidden');
+  }
+}
+function closeRevModalBtn() {
+  document.getElementById('rev-modal').classList.add('hidden');
+}
+
+function simDownload(btn) {
+  const orig = btn.innerHTML;
+  btn.textContent = 'Descargando...';
+  btn.disabled = true;
+  setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 1200);
+}
+
+function aprobarDoc(uid) {
+  const row = document.getElementById(uid);
+  row.className = 'rev-doc-row aprobado';
+  row.style.borderColor = '#a7f3d0';
+  row.querySelector('.rev-doc-icon').textContent = '✅';
+  const actions = row.querySelector('.rev-doc-actions');
+  actions.innerHTML = `<button class="btn-historial" onclick="abrirHistorialDoc('${uid}')">📋 Historial</button><button class="btn-download" onclick="simDownload(this)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Descargar</button><span class="rev-doc-done-badge rev-done-aprobado">✓ Aprobado</span>`;
+  const form = document.getElementById('form-' + uid);
+  if (form) form.remove();
+  const uploadForm = document.getElementById('upload-revisor-form-' + uid);
+  if (uploadForm) uploadForm.remove();
+  if (docBaseInfo[uid]) { docBaseInfo[uid].estado = 'aprobado'; docBaseInfo[uid].reviewDate = '2026-04-23'; }
+}
+
+function mostrarFormRechazo(uid) {
+  document.getElementById('form-' + uid).classList.add('visible');
+}
+
+function confirmarRechazo(uid) {
+  const motivo = document.getElementById('txt-' + uid).value.trim() || 'Sin motivo especificado';
+  const row = document.getElementById(uid);
+  row.className = 'rev-doc-row rechazado';
+  row.style.borderColor = '#fecaca';
+  row.querySelector('.rev-doc-icon').textContent = '❌';
+  const body = row.querySelector('.rev-doc-body');
+  const actions = body.querySelector('.rev-doc-actions');
+  actions.innerHTML = `<button class="btn-historial" onclick="abrirHistorialDoc('${uid}')">📋 Historial</button><button class="btn-upload-revisor" onclick="mostrarFormSubidaRevisor('${uid}')">⬆ Subir como revisor</button><span class="rev-doc-done-badge rev-done-rechazado">✕ Rechazado</span>`;
+  const form = document.getElementById('form-' + uid);
+  if (form) {
+    const motivoEl = document.createElement('div');
+    motivoEl.className = 'rev-doc-motivo-txt';
+    motivoEl.textContent = 'Motivo: ' + motivo;
+    form.replaceWith(motivoEl);
+  }
+  if (docBaseInfo[uid]) { docBaseInfo[uid].estado = 'rechazado'; docBaseInfo[uid].reviewDate = '2026-04-23'; docBaseInfo[uid].motivo = motivo; docBaseInfo[uid].isRich = false; }
+  const uploadFormR = document.getElementById('upload-revisor-form-' + uid);
+  if (uploadFormR) uploadFormR.classList.remove('visible');
+}
+
+/* ─── LPU FUNCTIONS ─── */
+
+const _dlBtnSvg = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
+const _uploadSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>`;
+
+function _dlBtn() {
+  return `<button class="btn-download" onclick="simDownload(this)">${_dlBtnSvg}Descargar</button>`;
+}
+
+function renderLPUWidgetProv(pep, idx) {
+  const widget = document.getElementById('prov-lpu-widget');
+  if (!widget) return;
+  const lpu = lpuState[pep];
+
+  if (!lpu || lpu.estado === 'pendiente') {
+    widget.innerHTML = `
+      <div class="lpu-widget">
+        <div class="lpu-widget-title">📎 Archivo LPU</div>
+        <label class="doc-upload-area" onclick="subirLPU('${pep}',${idx})">
+          ${_uploadSvg}<span>Subir archivo LPU</span>
+          <input type="file" style="display:none;" />
+        </label>
+      </div>`;
+    return;
+  }
+
+  if (lpu.estado === 'en-revision') {
+    widget.innerHTML = `
+      <div class="lpu-widget">
+        <div class="lpu-widget-title">📎 Archivo LPU</div>
+        <div class="lpu-filename">📄 ${lpu.file}</div>
+        <div class="lpu-actions">
+          ${_dlBtn()}
+          <span class="doc-status-tag tag-revision">⏳ En revisión LPS</span>
+        </div>
+      </div>`;
+    return;
+  }
+
+  if (lpu.estado === 'rechazado-revisor') {
+    widget.innerHTML = `
+      <div class="lpu-widget">
+        <div class="lpu-widget-title">📎 Archivo LPU</div>
+        <div class="lpu-filename">📄 ${lpu.file}</div>
+        <div class="lpu-actions">
+          ${_dlBtn()}
+          <span class="doc-status-tag tag-rechazado">✕ Rechazado por LPS</span>
+        </div>
+        <div style="font-size:11px;color:#b91c1c;font-style:italic;">Motivo: ${lpu.motivoRev}</div>
+        <label class="doc-upload-area" onclick="subsanarLPUProv('${pep}',${idx})">
+          ${_uploadSvg}<span>Subsanar — subir nuevo archivo</span>
+          <input type="file" style="display:none;" />
+        </label>
+      </div>`;
+    return;
+  }
+
+  if (lpu.estado === 'aprobado') {
+    widget.innerHTML = `
+      <div class="lpu-widget">
+        <div class="lpu-widget-title">📎 Archivo LPU</div>
+        <div class="lpu-filename">📄 ${lpu.file}</div>
+        <div class="lpu-validation">✓ Aprobado por LPS</div>
+        <div class="lpu-actions">${_dlBtn()}</div>
+      </div>`;
+  }
+}
+
+function subirLPU(pep, idx) {
+  lpuState[pep] = { estado:'en-revision', file:'LPU_'+pep+'.pdf', fechaCarga: new Date().toISOString().split('T')[0] };
+  renderLPUWidgetProv(pep, idx);
+}
+
+function subsanarLPUProv(pep, idx) {
+  const prev = lpuState[pep] || {};
+  const version = prev.file && prev.file.includes('_v') ? '_v3' : '_v2';
+  lpuState[pep] = { ...prev, estado:'en-revision', file:'LPU_'+pep+version+'.pdf', fechaCarga: new Date().toISOString().split('T')[0] };
+  renderLPUWidgetProv(pep, idx);
+}
+
+
+function renderLPUSectionRev(obraIdx) {
+  const o = obras[obraIdx];
+  const section = document.getElementById('rev-lpu-section');
+  const container = document.getElementById('rev-modal-lpu');
+  if (!section || !container) return;
+
+  if (!isLPUProject(o)) {
+    section.style.display = 'none';
+    return;
+  }
+  section.style.display = '';
+
+  const lpu = lpuState[o.pep];
+
+  if (!lpu || lpu.estado === 'pendiente') {
+    container.innerHTML = `<div style="padding:12px;color:var(--slate);font-size:13px;background:var(--slate-lt);border-radius:8px;">⏳ Pendiente de carga por el proveedor.</div>`;
+    return;
+  }
+
+  if (lpu.estado === 'en-revision') {
+    container.innerHTML = `
+      <div class="rev-lpu-row en-revision">
+        <div style="font-size:16px;flex-shrink:0;margin-top:3px;">🔄</div>
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+            <div style="font-size:13px;font-weight:500;color:var(--navy);">${lpu.file}</div>
+            <div style="display:flex;align-items:center;gap:6px;">
+              ${_dlBtn()}
+              <button class="btn-aprobar" onclick="revisorAprobarLPU('${o.pep}',${obraIdx})">✓ Aprobar</button>
+              <button class="btn-rechazar" onclick="mostrarFormRechazoLPURev('${o.pep}')">✕ Rechazar</button>
+            </div>
+          </div>
+          <div style="font-size:10px;font-family:var(--mono);color:var(--slate);margin-top:4px;">Cargado: ${lpu.fechaCarga}</div>
+          <div class="rev-motivo-form" id="lpu-rev-form-${o.pep}">
+            <div style="font-size:11px;font-weight:600;color:#b91c1c;margin-bottom:5px;">Motivo del rechazo</div>
+            <textarea class="rev-motivo-textarea" id="lpu-rev-txt-${o.pep}" placeholder="Describa el motivo del rechazo..."></textarea>
+            <button class="btn-confirmar-rechazo" style="margin-top:6px;" onclick="confirmarRechazoLPURev('${o.pep}',${obraIdx})">Confirmar rechazo</button>
+          </div>
+        </div>
+      </div>`;
+    return;
+  }
+
+  if (lpu.estado === 'rechazado-revisor') {
+    container.innerHTML = `
+      <div class="rev-lpu-row rechazado">
+        <div style="font-size:16px;flex-shrink:0;margin-top:3px;">❌</div>
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+            <div style="font-size:13px;font-weight:500;color:var(--navy);">${lpu.file}</div>
+            <div style="display:flex;align-items:center;gap:6px;">${_dlBtn()}<span class="rev-doc-done-badge rev-done-rechazado">✕ Rechazado</span></div>
+          </div>
+          <div style="font-size:10px;font-family:var(--mono);color:var(--slate);margin-top:4px;">Cargado: ${lpu.fechaCarga}</div>
+          <div style="font-size:11px;color:#b91c1c;font-style:italic;margin-top:4px;">Motivo: ${lpu.motivoRev}</div>
+        </div>
+      </div>`;
+    return;
+  }
+
+  if (lpu.estado === 'aprobado') {
+    container.innerHTML = `
+      <div class="rev-lpu-row aprobado">
+        <div style="font-size:16px;flex-shrink:0;margin-top:3px;">✅</div>
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+            <div style="font-size:13px;font-weight:500;color:var(--navy);">${lpu.file}</div>
+            <div style="display:flex;align-items:center;gap:6px;">${_dlBtn()}<span class="rev-doc-done-badge rev-done-aprobado">✓ Aprobado por LPS</span></div>
+          </div>
+          <div style="font-size:10px;font-family:var(--mono);color:var(--slate);margin-top:4px;">Cargado: ${lpu.fechaCarga}</div>
+        </div>
+      </div>`;
+  }
+}
+
+function revisorAprobarLPU(pep, obraIdx) {
+  lpuState[pep].estado = 'aprobado';
+  renderLPUSectionRev(obraIdx);
+}
+
+function mostrarFormRechazoLPURev(pep) {
+  const f = document.getElementById('lpu-rev-form-'+pep);
+  if (f) f.classList.add('visible');
+}
+
+function confirmarRechazoLPURev(pep, obraIdx) {
+  const txt = document.getElementById('lpu-rev-txt-'+pep);
+  const motivo = txt ? txt.value.trim() : '';
+  lpuState[pep] = { ...lpuState[pep], estado:'rechazado-revisor', motivoRev: motivo || 'Sin motivo especificado' };
+  renderLPUSectionRev(obraIdx);
+}
+
+/* ─── HISTORIAL DE DOCUMENTOS ─── */
+
+function addDays(dateStr, days) {
+  const d = new Date(dateStr || '2026-01-01');
+  d.setDate(d.getDate() + days);
+  return d.toISOString().split('T')[0];
+}
+
+function buildDocHistory(uid) {
+  const info = docBaseInfo[uid] || {};
+  const { estado, uploadDate, reviewDate, motivo, isRich } = info;
+  const events = [];
+
+  if (estado === 'aprobado') {
+    events.push({ tipo: 'carga', fecha: uploadDate, actor: 'Proveedor', desc: 'Primera carga del documento' });
+    events.push({ tipo: 'aprobado', fecha: reviewDate, actor: 'Revisor LPS', desc: 'Documento aprobado' });
+  } else if (estado === 'en-revision') {
+    events.push({ tipo: 'carga', fecha: uploadDate, actor: 'Proveedor', desc: 'Primera carga del documento' });
+    events.push({ tipo: 'revision', fecha: '—', actor: 'Sistema', desc: 'En proceso de revisión' });
+  } else if (estado === 'rechazado') {
+    if (isRich) {
+      events.push({ tipo: 'carga', fecha: uploadDate, actor: 'Proveedor', desc: 'Primera carga del documento' });
+      events.push({ tipo: 'rechazado', fecha: reviewDate, actor: 'Revisor LPS', desc: 'Documento rechazado', motivo });
+      const subsDate = addDays(reviewDate, 2);
+      const rej2Date = addDays(reviewDate, 4);
+      events.push({ tipo: 'subsanado', fecha: subsDate, actor: 'Proveedor', desc: 'Subsanación — nuevo archivo cargado' });
+      events.push({ tipo: 'rechazado', fecha: rej2Date, actor: 'Revisor LPS', desc: 'Rechazado nuevamente', motivo: 'Errores subsistentes — ' + motivo });
+    } else {
+      events.push({ tipo: 'carga', fecha: uploadDate, actor: 'Proveedor', desc: 'Primera carga del documento' });
+      events.push({ tipo: 'rechazado', fecha: reviewDate || '2026-04-23', actor: 'Revisor LPS', desc: 'Documento rechazado', motivo: motivo || 'Sin motivo especificado' });
+    }
+  }
+
+  const extra = docHistorialOverrides[uid] || [];
+  events.push(...extra);
+  return events;
+}
+
+function renderHistorialEvent(e) {
+  const dotClass = { carga:'dot-carga', aprobado:'dot-aprobado', rechazado:'dot-rechazado', subsanado:'dot-subsanado', revision:'dot-revision', revisor:'dot-revisor' }[e.tipo] || 'dot-carga';
+  const icon = { carga:'↑', aprobado:'✓', rechazado:'✕', subsanado:'↺', revision:'⏳', revisor:'★' }[e.tipo] || '●';
+  const motivoHtml = e.motivo ? `<div class="doc-history-motivo">Motivo: ${e.motivo}</div>` : '';
+  return `
+    <div class="doc-history-event">
+      <div class="doc-history-dot ${dotClass}">${icon}</div>
+      <div class="doc-history-content">
+        <div class="doc-history-titulo">${e.desc}</div>
+        <div class="doc-history-meta">${e.actor} · ${e.fecha !== '—' ? fmtDate(e.fecha) : '—'}</div>
+        ${motivoHtml}
+      </div>
+    </div>`;
+}
+
+function abrirHistorialDoc(uid) {
+  const info = docBaseInfo[uid] || {};
+  document.getElementById('doc-history-nombre').textContent = info.nombre || '—';
+  document.getElementById('doc-history-meta').textContent = 'Historial de carga y revisión';
+  const events = buildDocHistory(uid);
+  document.getElementById('doc-history-body').innerHTML =
+    `<div class="doc-history-timeline">${events.map(renderHistorialEvent).join('')}</div>`;
+  document.getElementById('doc-history-modal').classList.remove('hidden');
+}
+
+function closeDocHistoryModal(e) {
+  if (e.target === document.getElementById('doc-history-modal'))
+    document.getElementById('doc-history-modal').classList.add('hidden');
+}
+function closeDocHistoryModalBtn() {
+  document.getElementById('doc-history-modal').classList.add('hidden');
+}
+
+function mostrarFormSubidaRevisor(uid) {
+  const form = document.getElementById('upload-revisor-form-' + uid);
+  if (form) form.classList.add('visible');
+}
+
+function confirmarSubidaRevisor(uid) {
+  if (!docHistorialOverrides[uid]) docHistorialOverrides[uid] = [];
+  const today = '2026-04-23';
+  docHistorialOverrides[uid].push(
+    { tipo: 'revisor', fecha: today, actor: 'Revisor LPS', desc: 'Archivo cargado directamente por el revisor LPS' },
+    { tipo: 'aprobado', fecha: today, actor: 'Revisor LPS', desc: 'Documento aprobado (carga directa por revisor)' }
+  );
+  if (docBaseInfo[uid]) { docBaseInfo[uid].estado = 'aprobado'; }
+
+  const row = document.getElementById(uid);
+  if (!row) return;
+  row.className = 'rev-doc-row aprobado';
+  row.style.borderColor = '#c4b5fd';
+  row.querySelector('.rev-doc-icon').textContent = '✅';
+
+  const actions = row.querySelector('.rev-doc-actions');
+  actions.innerHTML = `<button class="btn-historial" onclick="abrirHistorialDoc('${uid}')">📋 Historial</button>${_dlBtn()}<span class="rev-doc-done-badge" style="background:#ede9fe;color:#7c3aed;">★ Aprobado por revisor</span>`;
+
+  const datesEl = row.querySelector('.rev-doc-dates');
+  if (datesEl) datesEl.textContent = 'Cargado por revisor: ' + fmtDate(today);
+
+  ['form-'+uid, 'upload-revisor-form-'+uid].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  });
+
+  const motivoTxt = row.querySelector('.rev-doc-motivo-txt');
+  if (motivoTxt) motivoTxt.remove();
+}
+
+renderStats();
+initObrasFilters();
+renderTable();
+initRevFilters();
+renderRevTable();
+initProveedorVista();
+</script>
+</body>
+</html>
